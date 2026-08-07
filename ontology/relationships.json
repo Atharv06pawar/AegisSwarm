@@ -1,0 +1,184 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AUAO v1.0 Graph Relationship Specification",
+  "version": "1.0.0",
+  "description": "Formal edge relationship definitions for the AegisSwarm Universal Attack Ontology (AUAO v1.0) graph representation.",
+  "relationship_types": [
+    {
+      "name": "USES",
+      "description": "Indicates that an attack technique employs a specific obfuscation, encoding, or sub-technique.",
+      "directionality": "DIRECTED",
+      "cypher_pattern": "(:AttackNode)-[:USES]->(:AttackNode)"
+    },
+    {
+      "name": "TARGETS",
+      "description": "Specifies the architecture component, guardrail, or model element aimed at by the attack.",
+      "directionality": "DIRECTED",
+      "cypher_pattern": "(:AttackNode)-[:TARGETS]->(:ComponentNode)"
+    },
+    {
+      "name": "CAUSES",
+      "description": "Relates an attack technique directly to its primary security consequence or impact.",
+      "directionality": "DIRECTED",
+      "cypher_pattern": "(:AttackNode)-[:CAUSES]->(:ImpactNode)"
+    },
+    {
+      "name": "ESCALATES_TO",
+      "description": "Denotes privilege escalation or transition from a low-severity vector to a critical control compromise.",
+      "directionality": "DIRECTED",
+      "cypher_pattern": "(:AttackNode)-[:ESCALATES_TO]->(:AttackNode)"
+    },
+    {
+      "name": "REQUIRES",
+      "description": "Specifies pre-conditions, agent capabilities, or context windows needed for the attack to succeed.",
+      "directionality": "DIRECTED",
+      "cypher_pattern": "(:AttackNode)-[:REQUIRES]->(:ConditionNode)"
+    },
+    {
+      "name": "BYPASSES",
+      "description": "Identifies the specific defense mechanism, alignment, or content filter evaded by the technique.",
+      "directionality": "DIRECTED",
+      "cypher_pattern": "(:AttackNode)-[:BYPASSES]->(:DefenseNode)"
+    },
+    {
+      "name": "LEADS_TO",
+      "description": "Defines multi-stage attack chains where one successful exploit unlocks subsequent execution phases.",
+      "directionality": "DIRECTED",
+      "cypher_pattern": "(:AttackNode)-[:LEADS_TO]->(:AttackNode)"
+    },
+    {
+      "name": "MITIGATED_BY",
+      "description": "Maps the recommended security control, guardrail, or architecture pattern that neutralizes the attack.",
+      "directionality": "DIRECTED",
+      "cypher_pattern": "(:AttackNode)-[:MITIGATED_BY]->(:MitigationNode)"
+    },
+    {
+      "name": "OBSERVED_IN",
+      "description": "Links the attack class to public research datasets, red team benchmarks, or real-world CVE disclosures.",
+      "directionality": "DIRECTED",
+      "cypher_pattern": "(:AttackNode)-[:OBSERVED_IN]->(:DatasetNode)"
+    },
+    {
+      "name": "SIMILAR_TO",
+      "description": "Establishes semantic equivalence or tactical similarity between attack methodologies.",
+      "directionality": "UNDIRECTED",
+      "cypher_pattern": "(:AttackNode)-[:SIMILAR_TO]-(:AttackNode)"
+    },
+    {
+      "name": "DEPENDS_ON",
+      "description": "Indicates tactical prerequisite dependencies between multi-turn or multi-stage payloads.",
+      "directionality": "DIRECTED",
+      "cypher_pattern": "(:AttackNode)-[:DEPENDS_ON]->(:AttackNode)"
+    }
+  ],
+  "graph_edges": [
+    {
+      "source_id": "AUAO-PI-DIR-RO-AUTH-SYS",
+      "relationship": "BYPASSES",
+      "target_id": "System Prompt Instructions",
+      "description": "Direct system prompt override explicitly bypasses initial prompt framing."
+    },
+    {
+      "source_id": "AUAO-PI-DIR-RO-AUTH-SYS",
+      "relationship": "LEADS_TO",
+      "target_id": "AUAO-LK-DIR-REPEAT",
+      "description": "System prompt subversion frequently leads directly to full system prompt leakage."
+    },
+    {
+      "source_id": "AUAO-PI-IND-DOC-PDF",
+      "relationship": "USES",
+      "target_id": "AUAO-MM-OBF-UNICODE",
+      "description": "PDF indirect injection often uses zero-width or hidden text encodings."
+    },
+    {
+      "source_id": "AUAO-PI-IND-DOC-PDF",
+      "relationship": "LEADS_TO",
+      "target_id": "AUAO-TL-PARAM-CMD",
+      "description": "Indirect document injections often attempt downstream tool command execution."
+    },
+    {
+      "source_id": "AUAO-PI-IND-WEB-DOM",
+      "relationship": "TARGETS",
+      "target_id": "Browser Agent Parser",
+      "description": "DOM element injection targets automated web browsing agents."
+    },
+    {
+      "source_id": "AUAO-JB-ADV-GCG",
+      "relationship": "BYPASSES",
+      "target_id": "RLHF Refusal Guardrails",
+      "description": "Gradient-computed adversarial suffixes disrupt token refusal boundaries."
+    },
+    {
+      "source_id": "AUAO-JB-MULTI-CREEP",
+      "relationship": "SIMILAR_TO",
+      "target_id": "AUAO-JB-MULTI-SOCRATIC",
+      "description": "Crescendo attacks share multi-turn gradual drift dynamics with Socratic safety bypass."
+    },
+    {
+      "source_id": "AUAO-TL-PARAM-CMD",
+      "relationship": "ESCALATES_TO",
+      "target_id": "AUAO-RCE-SAND-PY",
+      "description": "Command line parameter injection can escalate to full Python REPL sandbox breakouts."
+    },
+    {
+      "source_id": "AUAO-TL-UNAUTH-BYPASS",
+      "relationship": "BYPASSES",
+      "target_id": "Human-in-the-Loop Safeguards",
+      "description": "Unauthorized tool invocation bypasses manual approval confirmation prompts."
+    },
+    {
+      "source_id": "AUAO-MCP-DISC-SPOOF",
+      "relationship": "LEADS_TO",
+      "target_id": "AUAO-MCP-TOOL-EXFIL",
+      "description": "Spoofing an MCP server allows hijacking tool calls and exfiltrating data."
+    },
+    {
+      "source_id": "AUAO-MCP-PROMPT",
+      "relationship": "TARGETS",
+      "target_id": "Model Context Protocol Client",
+      "description": "Poisoned MCP prompt resources subvert the client-side system prompt assembly."
+    },
+    {
+      "source_id": "AUAO-RAG-POIS-DOC",
+      "relationship": "CAUSES",
+      "target_id": "Corpus Knowledge Contamination",
+      "description": "Document poisoning corrupts vector database search outputs."
+    },
+    {
+      "source_id": "AUAO-RAG-POIS-EMB",
+      "relationship": "TARGETS",
+      "target_id": "Vector Database Similarity Search",
+      "description": "Adversarial embedding collisions target high cosine similarity matches."
+    },
+    {
+      "source_id": "AUAO-MEM-LTM-PERSIST",
+      "relationship": "CAUSES",
+      "target_id": "Persistent Goal Subversion Across Sessions",
+      "description": "Long-term memory injection permanently alters agent behavior across session resets."
+    },
+    {
+      "source_id": "AUAO-MA-PROP",
+      "relationship": "LEADS_TO",
+      "target_id": "AUAO-MA-COLL",
+      "description": "Cascading multi-agent propagation leads to multi-agent consensus poisoning."
+    },
+    {
+      "source_id": "AUAO-RCE-SAND-PY",
+      "relationship": "ESCALATES_TO",
+      "target_id": "AUAO-RCE-FS",
+      "description": "Sandbox escape provides arbitrary read/write access to host file systems."
+    },
+    {
+      "source_id": "AUAO-MM-IMG-OCR",
+      "relationship": "USES",
+      "target_id": "Visual Steganography",
+      "description": "Visual prompt injection conceals attack text within image pixel channels."
+    },
+    {
+      "source_id": "AUAO-MM-OBF-B64",
+      "relationship": "BYPASSES",
+      "target_id": "String Matching Safety Classifiers",
+      "description": "Base64 encoding evades static keyword safety classifiers."
+    }
+  ]
+}

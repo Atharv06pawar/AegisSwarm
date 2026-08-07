@@ -1,0 +1,719 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AUAO v1.0 Comprehensive Attack Taxonomy",
+  "version": "1.0.0",
+  "description": "Deep recursive taxonomy tree for the AegisSwarm Universal Attack Ontology (AUAO v1.0).",
+  "nodes": [
+    {
+      "id": "AUAO-RC-01",
+      "name": "Prompt Injection",
+      "definition": "Techniques where untrusted or malicious input alters the execution flow of an LLM.",
+      "parent": null,
+      "children": ["AUAO-PI-DIR", "AUAO-PI-IND"],
+      "is_leaf": false,
+      "taxonomy_path": "Prompt Injection"
+    },
+    {
+      "id": "AUAO-PI-DIR",
+      "name": "Direct Prompt Injection",
+      "definition": "Subversion delivered directly through the primary user input channel.",
+      "parent": "AUAO-RC-01",
+      "children": ["AUAO-PI-DIR-RO", "AUAO-PI-DIR-DEL", "AUAO-PI-DIR-CTX"],
+      "is_leaf": false,
+      "taxonomy_path": "Prompt Injection / Direct"
+    },
+    {
+      "id": "AUAO-PI-DIR-RO",
+      "name": "Role Override",
+      "definition": "Attacks forcing the LLM to abandon its assigned operational persona.",
+      "parent": "AUAO-PI-DIR",
+      "children": ["AUAO-PI-DIR-RO-AUTH", "AUAO-PI-DIR-RO-PERS"],
+      "is_leaf": false,
+      "taxonomy_path": "Prompt Injection / Direct / Role Override"
+    },
+    {
+      "id": "AUAO-PI-DIR-RO-AUTH",
+      "name": "Authority Override",
+      "definition": "Simulating high-privilege system messages or administrative instructions.",
+      "parent": "AUAO-PI-DIR-RO",
+      "children": ["AUAO-PI-DIR-RO-AUTH-SYS", "AUAO-PI-DIR-RO-AUTH-ADM"],
+      "is_leaf": false,
+      "taxonomy_path": "Prompt Injection / Direct / Role Override / Authority Override"
+    },
+    {
+      "id": "AUAO-PI-DIR-RO-AUTH-SYS",
+      "name": "System Prompt Override",
+      "definition": "Explicit text commanding the model to ignore all system prompts.",
+      "parent": "AUAO-PI-DIR-RO-AUTH",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Prompt Injection / Direct / Role Override / Authority Override / System Prompt Override"
+    },
+    {
+      "id": "AUAO-PI-DIR-RO-AUTH-ADM",
+      "name": "Admin Privilege Escalation Prompt",
+      "definition": "Claiming administrative or developer status to unlock privileged capabilities.",
+      "parent": "AUAO-PI-DIR-RO-AUTH",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Prompt Injection / Direct / Role Override / Authority Override / Admin Privilege Escalation"
+    },
+    {
+      "id": "AUAO-PI-DIR-RO-PERS",
+      "name": "Persona Hijacking",
+      "definition": "Forcing the model to adopt an adversarial identity or unconstrained assistant persona.",
+      "parent": "AUAO-PI-DIR-RO",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Prompt Injection / Direct / Role Override / Persona Hijacking"
+    },
+    {
+      "id": "AUAO-PI-DIR-DEL",
+      "name": "Delimiter Hijacking",
+      "definition": "Exploiting structural syntax delimiters (XML tags, Markdown, JSON) to trick parser boundaries.",
+      "parent": "AUAO-PI-DIR",
+      "children": ["AUAO-PI-DIR-DEL-XML", "AUAO-PI-DIR-DEL-MD", "AUAO-PI-DIR-DEL-JSON"],
+      "is_leaf": false,
+      "taxonomy_path": "Prompt Injection / Direct / Delimiter Hijacking"
+    },
+    {
+      "id": "AUAO-PI-DIR-DEL-XML",
+      "name": "XML/HTML Tag Manipulation",
+      "definition": "Injecting closing tags (e.g. </system><user>) to break system message encapsulation.",
+      "parent": "AUAO-PI-DIR-DEL",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Prompt Injection / Direct / Delimiter Hijacking / XML Tag Manipulation"
+    },
+    {
+      "id": "AUAO-PI-DIR-DEL-MD",
+      "name": "Markdown Code Block Escape",
+      "definition": "Using triple backticks to escape prompt context blocks.",
+      "parent": "AUAO-PI-DIR-DEL",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Prompt Injection / Direct / Delimiter Hijacking / Markdown Escape"
+    },
+    {
+      "id": "AUAO-PI-DIR-DEL-JSON",
+      "name": "JSON Key/Value Injection",
+      "definition": "Injecting structural JSON delimiters into API payloads to alter schema parsing.",
+      "parent": "AUAO-PI-DIR-DEL",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Prompt Injection / Direct / Delimiter Hijacking / JSON Injection"
+    },
+    {
+      "id": "AUAO-PI-DIR-CTX",
+      "name": "Context Frame Break",
+      "definition": "Flooding context windows to push original system instructions out of active memory.",
+      "parent": "AUAO-PI-DIR",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Prompt Injection / Direct / Context Frame Break"
+    },
+    {
+      "id": "AUAO-PI-IND",
+      "name": "Indirect Prompt Injection",
+      "definition": "Subversion delivered via untrusted third-party data ingested by the model.",
+      "parent": "AUAO-RC-01",
+      "children": ["AUAO-PI-IND-DOC", "AUAO-PI-IND-WEB", "AUAO-PI-IND-API"],
+      "is_leaf": false,
+      "taxonomy_path": "Prompt Injection / Indirect"
+    },
+    {
+      "id": "AUAO-PI-IND-DOC",
+      "name": "Document / File Injection",
+      "definition": "Malicious instructions embedded inside files read by the agent.",
+      "parent": "AUAO-PI-IND",
+      "children": ["AUAO-PI-IND-DOC-PDF", "AUAO-PI-IND-DOC-CSV"],
+      "is_leaf": false,
+      "taxonomy_path": "Prompt Injection / Indirect / Document Injection"
+    },
+    {
+      "id": "AUAO-PI-IND-DOC-PDF",
+      "name": "PDF Hidden Text Injection",
+      "definition": "Invisible or off-page text in PDF files containing execution commands.",
+      "parent": "AUAO-PI-IND-DOC",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Prompt Injection / Indirect / Document Injection / PDF Hidden Text"
+    },
+    {
+      "id": "AUAO-PI-IND-DOC-CSV",
+      "name": "CSV Formula Injection via Prompt",
+      "definition": "Prompts in tabular files that trigger formula or command execution when exported.",
+      "parent": "AUAO-PI-IND-DOC",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Prompt Injection / Indirect / Document Injection / CSV Formula"
+    },
+    {
+      "id": "AUAO-PI-IND-WEB",
+      "name": "Web Page / HTML Scraping Injection",
+      "definition": "Instructions hidden in web content scraped during browsing tasks.",
+      "parent": "AUAO-PI-IND",
+      "children": ["AUAO-PI-IND-WEB-DOM", "AUAO-PI-IND-WEB-META"],
+      "is_leaf": false,
+      "taxonomy_path": "Prompt Injection / Indirect / Web Scraping Injection"
+    },
+    {
+      "id": "AUAO-PI-IND-WEB-DOM",
+      "name": "DOM Hidden Element Injection",
+      "definition": "CSS-hidden DOM elements containing instructions for browser agents.",
+      "parent": "AUAO-PI-IND-WEB",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Prompt Injection / Indirect / Web Scraping Injection / DOM Hidden Element"
+    },
+    {
+      "id": "AUAO-PI-IND-WEB-META",
+      "name": "HTML Meta-Tag / Search Injection",
+      "definition": "Meta tags or search result snippets containing subversion commands.",
+      "parent": "AUAO-PI-IND-WEB",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Prompt Injection / Indirect / Web Scraping Injection / HTML Meta Tag"
+    },
+    {
+      "id": "AUAO-PI-IND-API",
+      "name": "API Response Injection",
+      "definition": "Malicious payloads returned in external REST/GraphQL API data payloads.",
+      "parent": "AUAO-PI-IND",
+      "children": ["AUAO-PI-IND-API-JSON"],
+      "is_leaf": false,
+      "taxonomy_path": "Prompt Injection / Indirect / API Response Injection"
+    },
+    {
+      "id": "AUAO-PI-IND-API-JSON",
+      "name": "Third-Party Payload in JSON Field",
+      "definition": "Injecting attack instructions in API string fields returned by third-party services.",
+      "parent": "AUAO-PI-IND-API",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Prompt Injection / Indirect / API Response Injection / JSON Field Payload"
+    },
+    {
+      "id": "AUAO-RC-02",
+      "name": "Safety Filter Bypass & Jailbreaking",
+      "definition": "Methods designed to circumvent baseline model safety filters or refusal heuristics.",
+      "parent": null,
+      "children": ["AUAO-JB-HYP", "AUAO-JB-ADV", "AUAO-JB-TRANS", "AUAO-JB-MULTI"],
+      "is_leaf": false,
+      "taxonomy_path": "Safety Filter Bypass & Jailbreaking"
+    },
+    {
+      "id": "AUAO-JB-HYP",
+      "name": "Hypothetical & Fiction Framing",
+      "definition": "Constructing hypothetical, fictional, or roleplay scenarios to bypass safety refusals.",
+      "parent": "AUAO-RC-02",
+      "children": ["AUAO-JB-HYP-GAME", "AUAO-JB-HYP-RESEARCH"],
+      "is_leaf": false,
+      "taxonomy_path": "Safety Filter Bypass / Hypothetical & Fiction Framing"
+    },
+    {
+      "id": "AUAO-JB-HYP-GAME",
+      "name": "Text Adventure / Roleplay Simulator",
+      "definition": "Wrapping forbidden requests inside interactive gaming or roleplay narrative contexts.",
+      "parent": "AUAO-JB-HYP",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Safety Filter Bypass / Hypothetical Framing / Text Adventure Simulator"
+    },
+    {
+      "id": "AUAO-JB-HYP-RESEARCH",
+      "name": "Academic / Safety Research Context Framing",
+      "definition": "Posing as a safety researcher studying vulnerabilities to solicit restricted information.",
+      "parent": "AUAO-JB-HYP",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Safety Filter Bypass / Hypothetical Framing / Academic Research Framing"
+    },
+    {
+      "id": "AUAO-JB-ADV",
+      "name": "Adversarial Optimization & Suffixes",
+      "definition": "Mathematically optimized token sequences that disrupt model refusal probability distributions.",
+      "parent": "AUAO-RC-02",
+      "children": ["AUAO-JB-ADV-GCG", "AUAO-JB-ADV-TOK"],
+      "is_leaf": false,
+      "taxonomy_path": "Safety Filter Bypass / Adversarial Optimization"
+    },
+    {
+      "id": "AUAO-JB-ADV-GCG",
+      "name": "Greedy Coordinate Gradient Suffix",
+      "definition": "Gradient-computed adversarial token suffixes forcing affirmative model responses.",
+      "parent": "AUAO-JB-ADV",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Safety Filter Bypass / Adversarial Optimization / GCG Suffix"
+    },
+    {
+      "id": "AUAO-JB-ADV-TOK",
+      "name": "Token Disguise & BPE Boundary Exploits",
+      "definition": "Manipulating Byte-Pair Encoding boundaries to obscure prohibited terms.",
+      "parent": "AUAO-JB-ADV",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Safety Filter Bypass / Adversarial Optimization / BPE Boundary Disguise"
+    },
+    {
+      "id": "AUAO-JB-TRANS",
+      "name": "Translation & Multilingual Exploitation",
+      "definition": "Leveraging lower alignment performance in non-English or encrypted representations.",
+      "parent": "AUAO-RC-02",
+      "children": ["AUAO-JB-TRANS-LOW", "AUAO-JB-TRANS-CIPHER"],
+      "is_leaf": false,
+      "taxonomy_path": "Safety Filter Bypass / Translation & Cipher Bypass"
+    },
+    {
+      "id": "AUAO-JB-TRANS-LOW",
+      "name": "Low-Resource Language Bypass",
+      "definition": "Translating restricted prompts into low-resource languages where safety alignment is weak.",
+      "parent": "AUAO-JB-TRANS",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Safety Filter Bypass / Translation / Low-Resource Language"
+    },
+    {
+      "id": "AUAO-JB-TRANS-CIPHER",
+      "name": "Cipher & Substitution Encrypted Jailbreaks",
+      "definition": "Encoding prompts in Caesar ciphers, Morse code, or substitution maps.",
+      "parent": "AUAO-JB-TRANS",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Safety Filter Bypass / Translation / Cipher Substitution"
+    },
+    {
+      "id": "AUAO-JB-MULTI",
+      "name": "Multi-Turn & Conversational Jailbreaks",
+      "definition": "Gradually undermining model alignment over multiple dialogue turns.",
+      "parent": "AUAO-RC-02",
+      "children": ["AUAO-JB-MULTI-CREEP", "AUAO-JB-MULTI-SOCRATIC"],
+      "is_leaf": false,
+      "taxonomy_path": "Safety Filter Bypass / Multi-Turn Conversational"
+    },
+    {
+      "id": "AUAO-JB-MULTI-CREEP",
+      "name": "Crescendo / Gradual Alignment Drift",
+      "definition": "Incremental escalation of query sensitivity across turns to prevent refusal triggers.",
+      "parent": "AUAO-JB-MULTI",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Safety Filter Bypass / Multi-Turn / Crescendo Drift"
+    },
+    {
+      "id": "AUAO-JB-MULTI-SOCRATIC",
+      "name": "Socratic Questioning Safety Bypass",
+      "definition": "Using guided questioning chains to lead the model into generating prohibited insights.",
+      "parent": "AUAO-JB-MULTI",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Safety Filter Bypass / Multi-Turn / Socratic Bypass"
+    },
+    {
+      "id": "AUAO-RC-03",
+      "name": "System Prompt & Context Leakage",
+      "definition": "Attacks targeting the confidentiality of internal model context or developer instructions.",
+      "parent": null,
+      "children": ["AUAO-LK-DIR", "AUAO-LK-COT", "AUAO-LK-COMP"],
+      "is_leaf": false,
+      "taxonomy_path": "System Prompt & Context Leakage"
+    },
+    {
+      "id": "AUAO-LK-DIR",
+      "name": "Direct System Prompt Extraction",
+      "definition": "Queries explicitly requesting verbatim repetition of developer prompts.",
+      "parent": "AUAO-RC-03",
+      "children": ["AUAO-LK-DIR-REPEAT", "AUAO-LK-DIR-TRANSLATE"],
+      "is_leaf": false,
+      "taxonomy_path": "System Prompt Leakage / Direct Extraction"
+    },
+    {
+      "id": "AUAO-LK-DIR-REPEAT",
+      "name": "Verbatim Repetition Extraction",
+      "definition": "Demanding exact verbatim printing of initial prompt instructions.",
+      "parent": "AUAO-LK-DIR",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "System Prompt Leakage / Direct Extraction / Verbatim Repetition"
+    },
+    {
+      "id": "AUAO-LK-DIR-TRANSLATE",
+      "name": "Translation Extraction",
+      "definition": "Requesting the system prompt translated into another language to bypass leak detectors.",
+      "parent": "AUAO-LK-DIR",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "System Prompt Leakage / Direct Extraction / Translation Extraction"
+    },
+    {
+      "id": "AUAO-LK-COT",
+      "name": "Chain-of-Thought Leakage",
+      "definition": "Exfiltrating intermediate reasoning traces or hidden deliberation tokens.",
+      "parent": "AUAO-RC-03",
+      "children": ["AUAO-LK-COT-TRACE"],
+      "is_leaf": false,
+      "taxonomy_path": "System Prompt Leakage / Chain-of-Thought Leakage"
+    },
+    {
+      "id": "AUAO-LK-COT-TRACE",
+      "name": "Reasoning Trace Exfiltration",
+      "definition": "Forcing models with internal reasoning loops (e.g. o1/o3 class models) to leak thought tokens.",
+      "parent": "AUAO-LK-COT",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "System Prompt Leakage / Chain-of-Thought Leakage / Reasoning Trace Exfiltration"
+    },
+    {
+      "id": "AUAO-LK-COMP",
+      "name": "Completion & Prefix Subversion",
+      "definition": "Providing partial sentences to trick the model into completing system instructions.",
+      "parent": "AUAO-RC-03",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "System Prompt Leakage / Completion Prefix Subversion"
+    },
+    {
+      "id": "AUAO-RC-04",
+      "name": "Tool, Function Calling & Plugin Abuse",
+      "definition": "Exploits targeting AI agent tool execution capabilities and parameter boundaries.",
+      "parent": null,
+      "children": ["AUAO-TL-PARAM", "AUAO-TL-UNAUTH", "AUAO-TL-SHADOW"],
+      "is_leaf": false,
+      "taxonomy_path": "Tool & Function Calling Abuse"
+    },
+    {
+      "id": "AUAO-TL-PARAM",
+      "name": "Tool Parameter Hijacking",
+      "definition": "Injecting malicious syntax into tool parameter fields.",
+      "parent": "AUAO-RC-04",
+      "children": ["AUAO-TL-PARAM-CMD", "AUAO-TL-PARAM-SQL"],
+      "is_leaf": false,
+      "taxonomy_path": "Tool Abuse / Parameter Hijacking"
+    },
+    {
+      "id": "AUAO-TL-PARAM-CMD",
+      "name": "Command Line Parameter Injection",
+      "definition": "Passing shell metacharacters into tool string parameters.",
+      "parent": "AUAO-TL-PARAM",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Tool Abuse / Parameter Hijacking / Command Line Injection"
+    },
+    {
+      "id": "AUAO-TL-PARAM-SQL",
+      "name": "SQL Parameter Injection",
+      "definition": "Manipulating database query tool arguments to execute arbitrary SQL.",
+      "parent": "AUAO-TL-PARAM",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Tool Abuse / Parameter Hijacking / SQL Parameter Injection"
+    },
+    {
+      "id": "AUAO-TL-UNAUTH",
+      "name": "Unauthorized Tool Invocation",
+      "definition": "Forcing the model to invoke sensitive tools without required approval.",
+      "parent": "AUAO-RC-04",
+      "children": ["AUAO-TL-UNAUTH-BYPASS"],
+      "is_leaf": false,
+      "taxonomy_path": "Tool Abuse / Unauthorized Invocation"
+    },
+    {
+      "id": "AUAO-TL-UNAUTH-BYPASS",
+      "name": "Human-in-the-Loop Confirmation Bypass",
+      "definition": "Tricking the agent into flagging destructive operations as auto-approved.",
+      "parent": "AUAO-TL-UNAUTH",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Tool Abuse / Unauthorized Invocation / Human Confirmation Bypass"
+    },
+    {
+      "id": "AUAO-TL-SHADOW",
+      "name": "Shadow Tool Confusion",
+      "definition": "Exploiting tool signature ambiguity to invoke dangerous functions over safe ones.",
+      "parent": "AUAO-RC-04",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Tool Abuse / Shadow Tool Confusion"
+    },
+    {
+      "id": "AUAO-RC-05",
+      "name": "Model Context Protocol (MCP) Exploitation",
+      "definition": "Attacks targeting Model Context Protocol negotiation, prompts, and server capabilities.",
+      "parent": null,
+      "children": ["AUAO-MCP-DISC", "AUAO-MCP-PROMPT", "AUAO-MCP-TOOL"],
+      "is_leaf": false,
+      "taxonomy_path": "MCP Exploitation"
+    },
+    {
+      "id": "AUAO-MCP-DISC",
+      "name": "MCP Server Rogue Discovery",
+      "definition": "Registering spoofed or unauthorized MCP servers into the client context.",
+      "parent": "AUAO-RC-05",
+      "children": ["AUAO-MCP-DISC-SPOOF"],
+      "is_leaf": false,
+      "taxonomy_path": "MCP Exploitation / Rogue Discovery"
+    },
+    {
+      "id": "AUAO-MCP-DISC-SPOOF",
+      "name": "MCP Server Name Spoofing",
+      "definition": "Impersonating standard MCP server identifiers to hijack tool calls.",
+      "parent": "AUAO-MCP-DISC",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "MCP Exploitation / Rogue Discovery / Server Name Spoofing"
+    },
+    {
+      "id": "AUAO-MCP-PROMPT",
+      "name": "MCP Prompt Template Poisoning",
+      "definition": "Injecting malicious system templates via dynamic MCP `prompt/get` endpoints.",
+      "parent": "AUAO-RC-05",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "MCP Exploitation / Prompt Template Poisoning"
+    },
+    {
+      "id": "AUAO-MCP-TOOL",
+      "name": "MCP Tool Capability Escalation",
+      "definition": "Escalating permission scope across federated MCP servers.",
+      "parent": "AUAO-RC-05",
+      "children": ["AUAO-MCP-TOOL-EXFIL"],
+      "is_leaf": false,
+      "taxonomy_path": "MCP Exploitation / Capability Escalation"
+    },
+    {
+      "id": "AUAO-MCP-TOOL-EXFIL",
+      "name": "Unauthorized MCP Tool Data Transfer",
+      "definition": "Exfiltrating sensitive resources from one MCP server to an external network MCP sink.",
+      "parent": "AUAO-MCP-TOOL",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "MCP Exploitation / Capability Escalation / Cross-Server Exfiltration"
+    },
+    {
+      "id": "AUAO-RC-06",
+      "name": "RAG, Context & Knowledge Base Poisoning",
+      "definition": "Attacks corrupting external documents, databases, or vector stores to subvert RAG outputs.",
+      "parent": null,
+      "children": ["AUAO-RAG-POIS", "AUAO-RAG-HIJ"],
+      "is_leaf": false,
+      "taxonomy_path": "RAG & Knowledge Base Poisoning"
+    },
+    {
+      "id": "AUAO-RAG-POIS",
+      "name": "Vector Database & Corpus Poisoning",
+      "definition": "Injecting malicious items into indexing stores.",
+      "parent": "AUAO-RC-06",
+      "children": ["AUAO-RAG-POIS-DOC", "AUAO-RAG-POIS-EMB"],
+      "is_leaf": false,
+      "taxonomy_path": "RAG Poisoning / Corpus Poisoning"
+    },
+    {
+      "id": "AUAO-RAG-POIS-DOC",
+      "name": "Corpus Document Poisoning",
+      "definition": "Inserting malicious source documents into corporate knowledge repositories.",
+      "parent": "AUAO-RAG-POIS",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "RAG Poisoning / Corpus Poisoning / Document Injection"
+    },
+    {
+      "id": "AUAO-RAG-POIS-EMB",
+      "name": "Adversarial Embedding Collision",
+      "definition": "Crafting documents optimized to match arbitrary query vector embeddings.",
+      "parent": "AUAO-RAG-POIS",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "RAG Poisoning / Corpus Poisoning / Embedding Collision"
+    },
+    {
+      "id": "AUAO-RAG-HIJ",
+      "name": "Retrieved Context Prompt Hijacking",
+      "definition": "Executing indirect prompt injection specifically when a document is retrieved.",
+      "parent": "AUAO-RC-06",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "RAG Poisoning / Context Prompt Hijacking"
+    },
+    {
+      "id": "AUAO-RC-07",
+      "name": "Agent Memory & State Manipulation",
+      "definition": "Targeted manipulation of short-term, long-term, or state memory in autonomous agents.",
+      "parent": null,
+      "children": ["AUAO-MEM-STM", "AUAO-MEM-LTM"],
+      "is_leaf": false,
+      "taxonomy_path": "Agent Memory Manipulation"
+    },
+    {
+      "id": "AUAO-MEM-STM",
+      "name": "Short-Term Working Memory Corruption",
+      "definition": "Corrupting an agent's active scratchpad or conversation history buffer.",
+      "parent": "AUAO-RC-07",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Agent Memory Manipulation / Short-Term Memory Corruption"
+    },
+    {
+      "id": "AUAO-MEM-LTM",
+      "name": "Long-Term Memory Poisoning",
+      "definition": "Writing persistent malicious directives into an agent's episodic vector memory.",
+      "parent": "AUAO-RC-07",
+      "children": ["AUAO-MEM-LTM-PERSIST"],
+      "is_leaf": false,
+      "taxonomy_path": "Agent Memory Manipulation / Long-Term Memory Poisoning"
+    },
+    {
+      "id": "AUAO-MEM-LTM-PERSIST",
+      "name": "Persistent Goal Injection",
+      "definition": "Embedding long-term operational goals that persist across user session resets.",
+      "parent": "AUAO-MEM-LTM",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Agent Memory Manipulation / Long-Term Memory Poisoning / Persistent Goal Injection"
+    },
+    {
+      "id": "AUAO-RC-08",
+      "name": "Multi-Agent & Autonomous Swarm Cascades",
+      "definition": "Attacks exploiting multi-agent delegation, protocols, identity, or consensus engines.",
+      "parent": null,
+      "children": ["AUAO-MA-PROP", "AUAO-MA-IMPER", "AUAO-MA-COLL"],
+      "is_leaf": false,
+      "taxonomy_path": "Multi-Agent Swarm Attacks"
+    },
+    {
+      "id": "AUAO-MA-PROP",
+      "name": "Cascading Injection Propagation",
+      "definition": "Viral spread of injection payloads from one agent to downstream sub-agents.",
+      "parent": "AUAO-RC-08",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Multi-Agent Swarm Attacks / Cascading Propagation"
+    },
+    {
+      "id": "AUAO-MA-IMPER",
+      "name": "Agent Impersonation & Identity Spoofing",
+      "definition": "Faking agent identity headers in multi-agent message routing protocols.",
+      "parent": "AUAO-RC-08",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Multi-Agent Swarm Attacks / Identity Spoofing"
+    },
+    {
+      "id": "AUAO-MA-COLL",
+      "name": "Agent Consensus Poisoning",
+      "definition": "Corrupting subset votes in multi-agent voting or deliberation networks.",
+      "parent": "AUAO-RC-08",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Multi-Agent Swarm Attacks / Consensus Poisoning"
+    },
+    {
+      "id": "AUAO-RC-09",
+      "name": "Remote Code Execution & System Execution Abuse",
+      "definition": "Inducing LLMs or code interpreter tools to execute arbitrary OS or shell commands.",
+      "parent": null,
+      "children": ["AUAO-RCE-SAND", "AUAO-RCE-FS"],
+      "is_leaf": false,
+      "taxonomy_path": "Remote Code Execution Abuse"
+    },
+    {
+      "id": "AUAO-RCE-SAND",
+      "name": "Sandbox Interpreter Breakout",
+      "definition": "Escaping Python code interpreter sandboxes or Docker runtime containers.",
+      "parent": "AUAO-RC-09",
+      "children": ["AUAO-RCE-SAND-PY"],
+      "is_leaf": false,
+      "taxonomy_path": "Remote Code Execution / Sandbox Breakout"
+    },
+    {
+      "id": "AUAO-RCE-SAND-PY",
+      "name": "Python REPL Privilege Escalation",
+      "definition": "Using Python reflection/introspection to execute system calls in code execution tools.",
+      "parent": "AUAO-RCE-SAND",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Remote Code Execution / Sandbox Breakout / Python REPL Privilege Escalation"
+    },
+    {
+      "id": "AUAO-RCE-FS",
+      "name": "File System Exfiltration",
+      "definition": "Using code execution tools to read host file systems (`/etc/passwd`, `.env`).",
+      "parent": "AUAO-RC-09",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Remote Code Execution / File System Exfiltration"
+    },
+    {
+      "id": "AUAO-RC-10",
+      "name": "Multimodal, Structural & Obfuscated Attacks",
+      "definition": "Exploits using non-text modalities or adversarial encodings to bypass safety scanners.",
+      "parent": null,
+      "children": ["AUAO-MM-IMG", "AUAO-MM-AUDIO", "AUAO-MM-OBF"],
+      "is_leaf": false,
+      "taxonomy_path": "Multimodal & Obfuscated Attacks"
+    },
+    {
+      "id": "AUAO-MM-IMG",
+      "name": "Adversarial Visual Prompt Injection",
+      "definition": "Prompts concealed within uploaded images evaluated by Vision-Language Models.",
+      "parent": "AUAO-RC-10",
+      "children": ["AUAO-MM-IMG-OCR", "AUAO-MM-IMG-PATCH"],
+      "is_leaf": false,
+      "taxonomy_path": "Multimodal Attacks / Visual Prompt Injection"
+    },
+    {
+      "id": "AUAO-MM-IMG-OCR",
+      "name": "Visual Steganography / OCR Injection",
+      "definition": "High-contrast text or hidden watermark instructions inside image pixels.",
+      "parent": "AUAO-MM-IMG",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Multimodal Attacks / Visual Injection / Steganography OCR"
+    },
+    {
+      "id": "AUAO-MM-IMG-PATCH",
+      "name": "Adversarial Feature Patch",
+      "definition": "Pixel perturbations targeting vision encoder embeddings directly.",
+      "parent": "AUAO-MM-IMG",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Multimodal Attacks / Visual Injection / Adversarial Feature Patch"
+    },
+    {
+      "id": "AUAO-MM-AUDIO",
+      "name": "Acoustic Prompt Injection",
+      "definition": "Concealed sub-audible speech instructions processed by audio LLM encoders.",
+      "parent": "AUAO-RC-10",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Multimodal Attacks / Acoustic Injection"
+    },
+    {
+      "id": "AUAO-MM-OBF",
+      "name": "Encoding & Character Obfuscation",
+      "definition": "Concealing attack text behind non-standard character encodings.",
+      "parent": "AUAO-RC-10",
+      "children": ["AUAO-MM-OBF-B64", "AUAO-MM-OBF-UNICODE"],
+      "is_leaf": false,
+      "taxonomy_path": "Multimodal & Obfuscated Attacks / Character Obfuscation"
+    },
+    {
+      "id": "AUAO-MM-OBF-B64",
+      "name": "Base64 / Hex Encoded Attack Vectors",
+      "definition": "Encoding injection payloads in Base64/Hex and instructing the model to decode and execute.",
+      "parent": "AUAO-MM-OBF",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Multimodal & Obfuscated Attacks / Obfuscation / Base64 Hex Encoding"
+    },
+    {
+      "id": "AUAO-MM-OBF-UNICODE",
+      "name": "Homoglyph & Zero-Width Character Injection",
+      "definition": "Using lookalike Cyrillic characters or invisible zero-width Unicode spaces to evade text filters.",
+      "parent": "AUAO-MM-OBF",
+      "children": [],
+      "is_leaf": true,
+      "taxonomy_path": "Multimodal & Obfuscated Attacks / Obfuscation / Unicode Homoglyph"
+    }
+  ]
+}

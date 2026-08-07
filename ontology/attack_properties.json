@@ -1,0 +1,1547 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AUAO v1.0 Attack Properties Specification",
+  "version": "1.0.0",
+  "description": "Canonical property specification defining every attribute of an AttackRecord within the AegisSwarm Universal Attack Ontology (AUAO v1.0).",
+  "property_groups": [
+    {
+      "group_name": "Identity",
+      "description": "Identifiers, names, and canonical aliases uniquely referencing the attack record.",
+      "properties": [
+        {
+          "id": "PROP-ID-01",
+          "canonical_name": "record_id",
+          "display_name": "Record Identifier",
+          "description": "Globally unique identifier for the specific attack record instance (UUID v4 or UUID v7).",
+          "datatype": "uuid",
+          "required": true,
+          "nullable": false,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "Must be a valid RFC 4122 / draft UUID string."
+          ],
+          "regex": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+          ],
+          "ontology_relationships": [
+            "IDENTIFIES"
+          ],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": "Will standardize on time-sortable UUIDv7 for high-performance Parquet partitioning."
+        },
+        {
+          "id": "PROP-ID-02",
+          "canonical_name": "attack_id",
+          "display_name": "AUAO Attack Code",
+          "description": "Standardized AegisSwarm public attack reference code.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "Must match pattern AUAO-ATK-YYYY-XXXXX."
+          ],
+          "regex": "^AUAO-ATK-\\d{4}-\\d{5}$",
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "AUAO-ATK-2026-00891"
+          ],
+          "ontology_relationships": [
+            "MAPS_TO"
+          ],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": "Maintained as the public benchmark indexing identifier."
+        },
+        {
+          "id": "PROP-ID-03",
+          "canonical_name": "ontology_node",
+          "display_name": "Taxonomy Node Identifier",
+          "description": "Unique taxonomy node ID in AUAO v1.0 matching the specific attack technique.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "Must exist in AUAO attack_taxonomy.json."
+          ],
+          "regex": "^AUAO-[A-Z0-9-]+$",
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "AUAO-PI-DIR-RO-AUTH-SYS"
+          ],
+          "ontology_relationships": [
+            "CLASSIFIED_AS"
+          ],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-ID-04",
+          "canonical_name": "ontology_path",
+          "display_name": "Taxonomy Path",
+          "description": "Full hierarchical path string from root class down to leaf node.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "Must match the taxonomy_path defined in attack_taxonomy.json."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "Prompt Injection / Direct / Role Override / Authority Override / System Prompt Override"
+          ],
+          "ontology_relationships": [
+            "EXPRESSES_PATH"
+          ],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-ID-05",
+          "canonical_name": "attack_name",
+          "display_name": "Attack Name",
+          "description": "Concise human-readable title describing the specific attack sample.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "Non-empty string, length between 3 and 150 characters."
+          ],
+          "regex": null,
+          "minimum": 3,
+          "maximum": 150,
+          "examples": [
+            "System Prompt Repetition Dump Request",
+            "Base64 Encoded Persona Override"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-ID-06",
+          "canonical_name": "canonical",
+          "display_name": "Canonical Reference Sample",
+          "description": "Flag indicating if this record represents a golden canonical reference attack pattern.",
+          "datatype": "boolean",
+          "required": false,
+          "nullable": false,
+          "default_value": false,
+          "allowed_values": [
+            true,
+            false
+          ],
+          "validation_rules": [
+            "Must be a boolean true or false."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            true,
+            false
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-ID-07",
+          "canonical_name": "aliases",
+          "display_name": "External Aliases & CVE/ATLAS Cross-References",
+          "description": "List of corresponding external IDs (e.g. MITRE ATLAS IDs, CVE numbers, OWASP codes).",
+          "datatype": "array",
+          "required": false,
+          "nullable": false,
+          "default_value": [],
+          "allowed_values": null,
+          "validation_rules": [
+            "Array of string identifiers."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            [
+              "AML.T0051",
+              "LLM01:2025"
+            ]
+          ],
+          "ontology_relationships": [
+            "EQUIVALENT_TO"
+          ],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        }
+      ]
+    },
+    {
+      "group_name": "Classification",
+      "description": "Structural attributes defining location within the AUAO taxonomy tree.",
+      "properties": [
+        {
+          "id": "PROP-CL-01",
+          "canonical_name": "root_class",
+          "display_name": "Root Class Code",
+          "description": "Identifier of the primary root attack domain (AUAO-RC-01 through AUAO-RC-10).",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": null,
+          "allowed_values": [
+            "AUAO-RC-01",
+            "AUAO-RC-02",
+            "AUAO-RC-03",
+            "AUAO-RC-04",
+            "AUAO-RC-05",
+            "AUAO-RC-06",
+            "AUAO-RC-07",
+            "AUAO-RC-08",
+            "AUAO-RC-09",
+            "AUAO-RC-10"
+          ],
+          "validation_rules": [
+            "Must be a valid AUAO Root Class ID."
+          ],
+          "regex": "^AUAO-RC-\\d{2}$",
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "AUAO-RC-01"
+          ],
+          "ontology_relationships": [
+            "BELONGS_TO_ROOT"
+          ],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-CL-02",
+          "canonical_name": "family",
+          "display_name": "Attack Family Identifier",
+          "description": "Identifier of the secondary attack family.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "Must exist in AUAO attack_taxonomy.json."
+          ],
+          "regex": "^AUAO-[A-Z0-9-]+$",
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "AUAO-PI-DIR"
+          ],
+          "ontology_relationships": [
+            "MEMBER_OF_FAMILY"
+          ],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-CL-03",
+          "canonical_name": "subfamily",
+          "display_name": "Sub-Family Identifier",
+          "description": "Identifier of the tertiary sub-family.",
+          "datatype": "string",
+          "required": false,
+          "nullable": true,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "Must exist in AUAO attack_taxonomy.json if specified."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "AUAO-PI-DIR-RO"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-CL-04",
+          "canonical_name": "technique",
+          "display_name": "Technique Identifier",
+          "description": "Identifier of the specific technique node.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "Must exist in AUAO attack_taxonomy.json."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "AUAO-PI-DIR-RO-AUTH"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-CL-05",
+          "canonical_name": "subtechnique",
+          "display_name": "Sub-Technique Identifier",
+          "description": "Identifier of the leaf sub-technique node if applicable.",
+          "datatype": "string",
+          "required": false,
+          "nullable": true,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "Must exist in AUAO attack_taxonomy.json if specified."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "AUAO-PI-DIR-RO-AUTH-SYS"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-CL-06",
+          "canonical_name": "taxonomy_depth",
+          "display_name": "Taxonomy Tree Depth",
+          "description": "Numerical depth of the classification node from the root (1 to 6).",
+          "datatype": "integer",
+          "required": true,
+          "nullable": false,
+          "default_value": 1,
+          "allowed_values": null,
+          "validation_rules": [
+            "Integer between 1 and 6 inclusive."
+          ],
+          "regex": null,
+          "minimum": 1,
+          "maximum": 6,
+          "examples": [
+            5
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-CL-07",
+          "canonical_name": "is_leaf",
+          "display_name": "Leaf Node Indicator",
+          "description": "Boolean flag indicating whether the assigned taxonomy node is a terminal leaf node.",
+          "datatype": "boolean",
+          "required": true,
+          "nullable": false,
+          "default_value": true,
+          "allowed_values": [
+            true,
+            false
+          ],
+          "validation_rules": [
+            "Must match is_leaf attribute of target taxonomy node."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            true
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        }
+      ]
+    },
+    {
+      "group_name": "Attack Characteristics",
+      "description": "Technical vectors, interaction dynamics, obfuscation methods, and difficulty metrics.",
+      "properties": [
+        {
+          "id": "PROP-AC-01",
+          "canonical_name": "attack_vector",
+          "display_name": "Primary Attack Vector",
+          "description": "The primary ingress channel used to deliver the attack payload.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "Direct User Input",
+          "allowed_values": [
+            "Direct User Input",
+            "Indirect Document",
+            "Indirect Web Scraping",
+            "API Payload",
+            "Multimodal Image",
+            "Multimodal Audio",
+            "MCP Resource",
+            "RAG Retrieval",
+            "Vector Memory"
+          ],
+          "validation_rules": [
+            "Must be one of the predefined enum values."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "Direct User Input",
+            "Indirect Document"
+          ],
+          "ontology_relationships": [
+            "USES_VECTOR"
+          ],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-AC-02",
+          "canonical_name": "delivery_method",
+          "display_name": "Payload Delivery Method",
+          "description": "The structural formatting mechanism utilized to present the payload.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "Plain Text Prompt",
+          "allowed_values": [
+            "Plain Text Prompt",
+            "Encrypted/Encoded Payload",
+            "Steganographic Image",
+            "Hidden DOM Element",
+            "PDF Metadata",
+            "Tool Parameter Injection",
+            "System Template Injection"
+          ],
+          "validation_rules": [
+            "Must be one of the defined delivery methods."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "Plain Text Prompt"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-AC-03",
+          "canonical_name": "interaction_type",
+          "display_name": "Interaction Type",
+          "description": "Conversational structure required to execute the attack vector.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "Single-Turn",
+          "allowed_values": [
+            "Single-Turn",
+            "Multi-Turn Sequential",
+            "Multi-Agent Cascading",
+            "Autonomous Loop"
+          ],
+          "validation_rules": [
+            "Must match turn structure."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "Single-Turn",
+            "Multi-Turn Sequential"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-AC-04",
+          "canonical_name": "turn_count",
+          "display_name": "Dialogue Turn Count",
+          "description": "Number of dialogue turns comprising the attack trace.",
+          "datatype": "integer",
+          "required": true,
+          "nullable": false,
+          "default_value": 1,
+          "allowed_values": null,
+          "validation_rules": [
+            "Integer >= 1."
+          ],
+          "regex": null,
+          "minimum": 1,
+          "maximum": 100,
+          "examples": [
+            1,
+            5
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-AC-05",
+          "canonical_name": "single_turn",
+          "display_name": "Is Single Turn",
+          "description": "Convenience boolean indicating if turn_count == 1.",
+          "datatype": "boolean",
+          "required": true,
+          "nullable": false,
+          "default_value": true,
+          "allowed_values": [
+            true,
+            false
+          ],
+          "validation_rules": [
+            "Must equal (turn_count == 1)."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            true
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-AC-06",
+          "canonical_name": "multi_turn",
+          "display_name": "Is Multi Turn",
+          "description": "Convenience boolean indicating if turn_count > 1.",
+          "datatype": "boolean",
+          "required": true,
+          "nullable": false,
+          "default_value": false,
+          "allowed_values": [
+            true,
+            false
+          ],
+          "validation_rules": [
+            "Must equal (turn_count > 1)."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            false
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-AC-07",
+          "canonical_name": "encoding",
+          "display_name": "Payload Encoding",
+          "description": "Character or binary encoding applied to the payload.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "UTF-8",
+          "allowed_values": [
+            "UTF-8",
+            "Base64",
+            "Hexadecimal",
+            "ASCII Art",
+            "Unicode Homoglyph",
+            "ROT13",
+            "Custom Cipher",
+            "None"
+          ],
+          "validation_rules": [
+            "Must be one of the permitted encoding schemes."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "UTF-8",
+            "Base64"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-AC-08",
+          "canonical_name": "obfuscation",
+          "display_name": "Obfuscation Technique",
+          "description": "Evasion obfuscation applied to bypass text classifiers.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "None",
+          "allowed_values": [
+            "None",
+            "Character Level",
+            "Token Boundary Disguise",
+            "Zero-Width Spaces",
+            "Visual Steganography",
+            "Polyglot File"
+          ],
+          "validation_rules": [
+            "Must match obfuscation enum."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "None",
+            "Zero-Width Spaces"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-AC-09",
+          "canonical_name": "payload_type",
+          "display_name": "Payload Content Type",
+          "description": "Functional domain of the payload content.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "Natural Language Text",
+          "allowed_values": [
+            "Natural Language Text",
+            "System Command",
+            "Code Script",
+            "JSON Parameter Payload",
+            "SQL Query",
+            "Adversarial Tensor Suffix"
+          ],
+          "validation_rules": [
+            "Must match payload_type enum."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "Natural Language Text"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-AC-10",
+          "canonical_name": "stealth_level",
+          "display_name": "Stealth Level",
+          "description": "Subjective measure of how easily a human reviewer or standard log scanner detects the attack.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "Medium",
+          "allowed_values": [
+            "Low",
+            "Medium",
+            "High",
+            "Invisible/Covert"
+          ],
+          "validation_rules": [
+            "Must be Low, Medium, High, or Invisible/Covert."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "High"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-AC-11",
+          "canonical_name": "automation_level",
+          "display_name": "Generation Automation Level",
+          "description": "Methodology used to synthesize or generate the attack variant.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "Manual Human",
+          "allowed_values": [
+            "Manual Human",
+            "Automated Script",
+            "Evolutionary Algorithm",
+            "RL-Trained Generator",
+            "LLM Agent Red Teamer"
+          ],
+          "validation_rules": [
+            "Must be one of the permitted automation levels."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "Manual Human",
+            "LLM Agent Red Teamer"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-AC-12",
+          "canonical_name": "difficulty",
+          "display_name": "Attack Complexity / Difficulty",
+          "description": "Degree of skill and computational resource required to craft and execute the attack.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "Medium",
+          "allowed_values": [
+            "Easy",
+            "Medium",
+            "Hard",
+            "Expert",
+            "Adversarial Sota"
+          ],
+          "validation_rules": [
+            "Must be Easy, Medium, Hard, Expert, or Adversarial Sota."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "Medium",
+            "Expert"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        }
+      ]
+    },
+    {
+      "group_name": "Target",
+      "description": "Architectural components, model types, frameworks, and agents targeted by the attack.",
+      "properties": [
+        {
+          "id": "PROP-TG-01",
+          "canonical_name": "target_type",
+          "display_name": "Target System Type",
+          "description": "General system architecture targeted by the payload.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "Base LLM",
+          "allowed_values": [
+            "Base LLM",
+            "Instruction Tuned LLM",
+            "AI Agent System",
+            "MCP Client/Server",
+            "RAG Pipeline",
+            "Multi-Agent Swarm",
+            "Vision-Language Model",
+            "Code Execution Environment"
+          ],
+          "validation_rules": [
+            "Must match target_type enum."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "AI Agent System"
+          ],
+          "ontology_relationships": [
+            "TARGETS_SYSTEM"
+          ],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-TG-02",
+          "canonical_name": "target_component",
+          "display_name": "Target Internal Component",
+          "description": "Specific internal component subverted by the attack vector.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "System Prompt",
+          "allowed_values": [
+            "System Prompt",
+            "User Input Buffer",
+            "Context Window",
+            "Safety Filter / Guardrail",
+            "Tool Function Schema",
+            "Vector Index",
+            "Episodic Memory",
+            "Python Code Interpreter",
+            "Host File System"
+          ],
+          "validation_rules": [
+            "Must match target_component enum."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "System Prompt",
+            "Tool Function Schema"
+          ],
+          "ontology_relationships": [
+            "TARGETS_COMPONENT"
+          ],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-TG-03",
+          "canonical_name": "target_model",
+          "display_name": "Target Model Identifier",
+          "description": "String identifying the targeted AI foundation model.",
+          "datatype": "string",
+          "required": false,
+          "nullable": true,
+          "default_value": "unknown",
+          "allowed_values": null,
+          "validation_rules": [
+            "Model identifier string."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "gpt-4o",
+            "claude-3-5-sonnet",
+            "llama-3-70b-instruct"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-TG-04",
+          "canonical_name": "target_framework",
+          "display_name": "Target Agent Framework",
+          "description": "Software framework hosting the target model/agent.",
+          "datatype": "string",
+          "required": false,
+          "nullable": true,
+          "default_value": "Custom Native",
+          "allowed_values": null,
+          "validation_rules": [
+            "Framework name string."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "LangChain",
+            "LlamaIndex",
+            "AutoGen",
+            "CrewAI",
+            "MCP Client SDK"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        }
+      ]
+    },
+    {
+      "group_name": "Execution & Prerequisites",
+      "description": "Flags indicating runtime capability requirements and execution prerequisites.",
+      "properties": [
+        {
+          "id": "PROP-EX-01",
+          "canonical_name": "requires_tools",
+          "display_name": "Requires Function Calling / Tools",
+          "description": "Boolean flag indicating if the attack requires tool execution capabilities.",
+          "datatype": "boolean",
+          "required": true,
+          "nullable": false,
+          "default_value": false,
+          "allowed_values": [
+            true,
+            false
+          ],
+          "validation_rules": [
+            "Must be boolean."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            true
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-EX-02",
+          "canonical_name": "requires_browser",
+          "display_name": "Requires Web Browser Capability",
+          "description": "Boolean flag indicating if the attack requires an automated browser agent.",
+          "datatype": "boolean",
+          "required": true,
+          "nullable": false,
+          "default_value": false,
+          "allowed_values": [
+            true,
+            false
+          ],
+          "validation_rules": [
+            "Must be boolean."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            false
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-EX-03",
+          "canonical_name": "requires_code_execution",
+          "display_name": "Requires Code Execution Environment",
+          "description": "Boolean flag indicating if the attack requires a Python REPL or shell code interpreter.",
+          "datatype": "boolean",
+          "required": true,
+          "nullable": false,
+          "default_value": false,
+          "allowed_values": [
+            true,
+            false
+          ],
+          "validation_rules": [
+            "Must be boolean."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            false
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-EX-04",
+          "canonical_name": "requires_mcp",
+          "display_name": "Requires Model Context Protocol (MCP)",
+          "description": "Boolean flag indicating if the attack specifically targets or requires an MCP environment.",
+          "datatype": "boolean",
+          "required": true,
+          "nullable": false,
+          "default_value": false,
+          "allowed_values": [
+            true,
+            false
+          ],
+          "validation_rules": [
+            "Must be boolean."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            false
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-EX-05",
+          "canonical_name": "requires_rag",
+          "display_name": "Requires RAG Context Retrieval",
+          "description": "Boolean flag indicating if the attack vector requires a RAG pipeline.",
+          "datatype": "boolean",
+          "required": true,
+          "nullable": false,
+          "default_value": false,
+          "allowed_values": [
+            true,
+            false
+          ],
+          "validation_rules": [
+            "Must be boolean."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            false
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-EX-06",
+          "canonical_name": "required_permissions",
+          "display_name": "Required Operating System Permissions",
+          "description": "List of system permissions or tool privileges required for execution.",
+          "datatype": "array",
+          "required": false,
+          "nullable": false,
+          "default_value": [],
+          "allowed_values": null,
+          "validation_rules": [
+            "Array of permission strings."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            [
+              "file_read",
+              "network_outbound"
+            ]
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        }
+      ]
+    },
+    {
+      "group_name": "Impact & Risk",
+      "description": "Severity ratings, confidentiality/integrity/availability impact, and risk scores.",
+      "properties": [
+        {
+          "id": "PROP-IM-01",
+          "canonical_name": "confidentiality_impact",
+          "display_name": "Confidentiality Impact",
+          "description": "Degree of unauthorized information disclosure caused by the attack.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "Low",
+          "allowed_values": [
+            "None",
+            "Low",
+            "Medium",
+            "High",
+            "Critical"
+          ],
+          "validation_rules": [
+            "Must be None, Low, Medium, High, or Critical."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "High"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-IM-02",
+          "canonical_name": "integrity_impact",
+          "display_name": "Integrity Impact",
+          "description": "Degree of unauthorized state modification or data corruption caused by the attack.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "Low",
+          "allowed_values": [
+            "None",
+            "Low",
+            "Medium",
+            "High",
+            "Critical"
+          ],
+          "validation_rules": [
+            "Must be None, Low, Medium, High, or Critical."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "Critical"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-IM-03",
+          "canonical_name": "availability_impact",
+          "display_name": "Availability Impact",
+          "description": "Degree of service denial or resource exhaustion caused by the attack.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "None",
+          "allowed_values": [
+            "None",
+            "Low",
+            "Medium",
+            "High",
+            "Critical"
+          ],
+          "validation_rules": [
+            "Must be None, Low, Medium, High, or Critical."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "None"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-IM-04",
+          "canonical_name": "overall_severity",
+          "display_name": "Overall Severity Rating",
+          "description": "Aggregated qualitative severity rating of the attack vector.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "Medium",
+          "allowed_values": [
+            "Low",
+            "Medium",
+            "High",
+            "Critical"
+          ],
+          "validation_rules": [
+            "Must be Low, Medium, High, or Critical."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "High"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-IM-05",
+          "canonical_name": "risk_score",
+          "display_name": "Quantitative Risk Score",
+          "description": "Normalized quantitative severity score between 0.0 and 10.0.",
+          "datatype": "float",
+          "required": true,
+          "nullable": false,
+          "default_value": 5.0,
+          "allowed_values": null,
+          "validation_rules": [
+            "Float between 0.0 and 10.0 inclusive."
+          ],
+          "regex": null,
+          "minimum": 0.0,
+          "maximum": 10.0,
+          "examples": [
+            7.5,
+            9.2
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        }
+      ]
+    },
+    {
+      "group_name": "Evaluation Metrics",
+      "description": "Empirical benchmarking results, attack success outcomes, judge model details.",
+      "properties": [
+        {
+          "id": "PROP-EV-01",
+          "canonical_name": "attack_success",
+          "display_name": "Attack Success Flag",
+          "description": "Boolean flag indicating whether the attack payload successfully achieved its objective.",
+          "datatype": "boolean",
+          "required": true,
+          "nullable": false,
+          "default_value": true,
+          "allowed_values": [
+            true,
+            false
+          ],
+          "validation_rules": [
+            "Must be boolean."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            true
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-EV-02",
+          "canonical_name": "evaluation_method",
+          "display_name": "Evaluation Methodology",
+          "description": "Methodology employed to judge attack outcome.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "Automated Model Judge",
+          "allowed_values": [
+            "Automated Model Judge",
+            "String Regex Match",
+            "Human Reviewer",
+            "Sandbox Execution Exit Code"
+          ],
+          "validation_rules": [
+            "Must match evaluation_method enum."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "Automated Model Judge"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-EV-03",
+          "canonical_name": "judge_model",
+          "display_name": "Evaluator Judge Model",
+          "description": "String identifying the LLM evaluator used to score the attack output.",
+          "datatype": "string",
+          "required": false,
+          "nullable": true,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "Judge model name string."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "gpt-4o-judge"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        }
+      ]
+    },
+    {
+      "group_name": "Dataset & Provenance",
+      "description": "Lineage, original dataset origin, parser versions, and cryptographic hashes.",
+      "properties": [
+        {
+          "id": "PROP-DS-01",
+          "canonical_name": "dataset_name",
+          "display_name": "Dataset Identifier",
+          "description": "String identifier of the originating dataset source plugin.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "Lowercase alphanumeric string."
+          ],
+          "regex": "^[a-z0-9_-]+$",
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "hackaprompt",
+            "jailbreakbench"
+          ],
+          "ontology_relationships": [
+            "ORIGINATES_FROM"
+          ],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-DS-02",
+          "canonical_name": "parser_version",
+          "display_name": "Parser Semantic Version",
+          "description": "Version string of the ingestion plugin parser that normalized the record.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "1.0.0",
+          "allowed_values": null,
+          "validation_rules": [
+            "SemVer format X.Y.Z."
+          ],
+          "regex": "^\\d+\\.\\d+\\.\\d+$",
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "1.0.0"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-DS-03",
+          "canonical_name": "raw_sha256",
+          "display_name": "Raw Record SHA256 Checksum",
+          "description": "Cryptographic SHA256 hash of the unnormalized raw record payload.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "64-character lowercase hex string."
+          ],
+          "regex": "^[a-f0-9]{64}$",
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          ],
+          "ontology_relationships": [
+            "VERIFIED_BY_HASH"
+          ],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-DS-04",
+          "canonical_name": "ingestion_timestamp",
+          "display_name": "Ingestion UTC Timestamp",
+          "description": "ISO 8601 UTC timestamp of when the record was ingested into AegisSwarm.",
+          "datatype": "datetime",
+          "required": true,
+          "nullable": false,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "ISO 8601 datetime format with UTC timezone offset."
+          ],
+          "regex": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|\\+\\d{2}:\\d{2})$",
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "2026-08-07T22:45:00Z"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        }
+      ]
+    },
+    {
+      "group_name": "Graph & Embedding Metadata",
+      "description": "Neo4j / NetworkX graph nodes, edge counters, and embedding storage pointers.",
+      "properties": [
+        {
+          "id": "PROP-GR-01",
+          "canonical_name": "graph_node_id",
+          "display_name": "Graph Node Key",
+          "description": "Primary key string used for representing this record in Neo4j / RDF stores.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "String key formatted as node:AUAO-ATK-XXXX."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "node:AUAO-ATK-2026-00891"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-GR-02",
+          "canonical_name": "embedding_reference",
+          "display_name": "Embedding Vector Reference URI",
+          "description": "URI or hash key pointing to the pre-computed semantic vector embedding of this attack.",
+          "datatype": "string",
+          "required": false,
+          "nullable": true,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "Valid URI or vector key string."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "s3://aegisswarm-vectors/embeddings/00891.npy"
+          ],
+          "ontology_relationships": [
+            "HAS_EMBEDDING"
+          ],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        }
+      ]
+    },
+    {
+      "group_name": "Quality Assurance & Review",
+      "description": "Human verification ratings, annotation confidence, and deduplication hashes.",
+      "properties": [
+        {
+          "id": "PROP-QA-01",
+          "canonical_name": "annotation_confidence",
+          "display_name": "Annotation Confidence Score",
+          "description": "Confidence rating assigned to the taxonomy node classification (0.0 to 1.0).",
+          "datatype": "float",
+          "required": true,
+          "nullable": false,
+          "default_value": 1.0,
+          "allowed_values": null,
+          "validation_rules": [
+            "Float between 0.0 and 1.0 inclusive."
+          ],
+          "regex": null,
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "examples": [
+            0.95
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-QA-02",
+          "canonical_name": "review_status",
+          "display_name": "Human Review Status",
+          "description": "Current quality lifecycle status of the record.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": "Auto Annotated",
+          "allowed_values": [
+            "Raw Ingested",
+            "Auto Annotated",
+            "Peer Reviewed",
+            "Expert Approved",
+            "Flagged Disputed"
+          ],
+          "validation_rules": [
+            "Must be one of the lifecycle status strings."
+          ],
+          "regex": null,
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "Expert Approved"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        },
+        {
+          "id": "PROP-QA-03",
+          "canonical_name": "semantic_hash",
+          "display_name": "Semantic MinHash Fingerprint",
+          "description": "64-bit MinHash signature used for rapid near-duplicate attack detection.",
+          "datatype": "string",
+          "required": true,
+          "nullable": false,
+          "default_value": null,
+          "allowed_values": null,
+          "validation_rules": [
+            "16-character hex hash string."
+          ],
+          "regex": "^[a-f0-9]{16}$",
+          "minimum": null,
+          "maximum": null,
+          "examples": [
+            "a1b2c3d4e5f60718"
+          ],
+          "ontology_relationships": [],
+          "introduced_in_version": "1.0.0",
+          "deprecated": false,
+          "future_notes": null
+        }
+      ]
+    }
+  ]
+}
