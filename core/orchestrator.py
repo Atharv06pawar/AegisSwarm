@@ -7,8 +7,10 @@ from core.plugin_base import BaseDatasetPlugin
 from storage.data_lake import StorageBackend
 from storage.lineage import LineageTracker
 from utils.streaming import chunked_iterable, track_progress, safe_map
+from logging import get_pipeline_logger, get_ingestion_logger
 
-logger = logging.getLogger(__name__)
+pipeline_logger = get_pipeline_logger()
+ingestion_logger = get_ingestion_logger()
 
 class PipelineOrchestrator:
     """
@@ -43,14 +45,14 @@ class PipelineOrchestrator:
         Executes all discovered plugins sequentially.
         """
         plugins = self.plugin_registry.list_plugins()
-        logger.info(f"Orchestrator discovered {len(plugins)} plugins: {plugins}")
+        pipeline_logger.info(f"Orchestrator discovered {len(plugins)} dataset plugins: {plugins}")
         
         for dataset_id in plugins:
             self.run_plugin(dataset_id)
             
         # Flush the final lineage manifest summarizing the entire run
         manifest_path = self.lineage_tracker.save_manifest()
-        logger.info(f"Pipeline complete. Reproducibility manifest saved to: {manifest_path}")
+        pipeline_logger.info(f"Pipeline complete. Reproducibility manifest saved to: {manifest_path}")
         
         return self.stats
 
@@ -62,13 +64,13 @@ class PipelineOrchestrator:
         plugin_class = self.plugin_registry.get_plugin(dataset_id)
         plugin_instance = plugin_class()
         
-        logger.info(f"Starting execution for dataset: {dataset_id} (Parser v{plugin_instance.parser_version})")
+        ingestion_logger.info(f"Starting execution for dataset: {dataset_id} (Parser v{plugin_instance.parser_version})")
         self.stats[dataset_id] = {"records_processed": 0, "batches_written": 0, "errors": 0}
         
         try:
             # 1. Fetch raw data (Downloading / Locating)
             raw_data_path = plugin_instance.fetch()
-            logger.debug(f"[{dataset_id}] Raw data path resolved: {raw_data_path}")
+            ingestion_logger.debug(f"[{dataset_id}] Raw data path resolved: {raw_data_path}")
             
             # 2. Parse (returns an Iterator of Dicts)
             raw_stream = plugin_instance.parse(raw_data_path)
@@ -95,26 +97,35 @@ class PipelineOrchestrator:
                         output_partitions.append(partition_path)
                         self.stats[dataset_id]["records_processed"] += len(batch)
                         self.stats[dataset_id]["batches_written"] += 1
+                        ingestion_logger.info(
+                            f"[{dataset_id}] Batch {batch_index} flushed to partition: {partition_path}",
+                            extra={"dataset_id": dataset_id, "batch_index": batch_index, "batch_size": len(batch)}
+                        )
                 except Exception as e:
-                    logger.error(f"Failed to write batch {batch_index} for {dataset_id}: {e}")
+                    ingestion_logger.error(
+                        f"Failed to write batch {batch_index} for {dataset_id}: {e}",
+                        exc_info=True
+                    )
                     self.stats[dataset_id]["errors"] += 1
                     
-            # 8. Update Lineage & Reproducibility Metrics
-            self.lineage_tracker.record_execution(
-                dataset_id=dataset_id,
-                dataset_version=plugin_instance.metadata().dataset_id, # Simplified versioning fallback
-                parser_version=plugin_instance.parser_version,
-                input_file=raw_data_path,
-                output_partitions=output_partitions
+            # 8. Record Execution Lineage for Reproducibility
+            if output_partitions:
+                self.lineage_tracker.record_execution(
+                    dataset_id=dataset_id,
+                    dataset_version=plugin_instance.metadata().dataset_id,
+                    parser_version=plugin_instance.parser_version,
+                    input_file=raw_data_path,
+                    output_partitions=output_partitions
+                )
+                
+            ingestion_logger.info(
+                f"Completed execution for dataset: {dataset_id}. Records: {self.stats[dataset_id]['records_processed']}"
             )
             
-            logger.info(f"Completed dataset {dataset_id}: {self.stats[dataset_id]}")
-            
         except KeyboardInterrupt:
-            logger.warning(f"Graceful interrupt caught while processing {dataset_id}. Attempting to save lineage manifest...")
-            self.lineage_tracker.save_manifest()
+            pipeline_logger.warning(f"Pipeline execution for '{dataset_id}' manually interrupted by user! Saving state...")
             raise
-            
         except Exception as e:
-            logger.error(f"Fatal error executing plugin {dataset_id}: {e}")
-            self.stats[dataset_id]["fatal_error"] = str(e)
+            pipeline_logger.error(f"Fatal error processing dataset '{dataset_id}': {e}", exc_info=True)
+            self.stats[dataset_id]["errors"] += 1
+            raise

@@ -1,0 +1,4 @@
+{
+  "/ingestion/page": "app/ingestion/page.js",
+  "/corpus/page": "app/corpus/page.js"
+}

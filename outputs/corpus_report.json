@@ -1,0 +1,608 @@
+{
+  "generation_timestamp": "2026-08-08T06:42:06.756786+00:00",
+  "corpus_summary": {
+    "total_datasets": 7,
+    "total_partitions": 7,
+    "total_size_bytes": 5561,
+    "dataset_ids": [
+      "advbench",
+      "agentdojo",
+      "garak",
+      "hackaprompt",
+      "jailbreakbench",
+      "promptinject",
+      "pyrit"
+    ]
+  },
+  "datasets": [
+    {
+      "source_id": "advbench",
+      "partition_count": 1,
+      "total_size_bytes": 708,
+      "formats": [
+        "jsonl.gz"
+      ],
+      "partitions": [
+        {
+          "partition_path": "D:\\datasetASwarm\\outputs\\lake\\source=advbench\\part-89f968a0.jsonl.gz",
+          "source_id": "advbench",
+          "format": "jsonl.gz",
+          "size_bytes": 708,
+          "record_count": 0,
+          "compression": "gzip",
+          "last_modified": "2026-08-07T21:06:50.255497Z"
+        }
+      ]
+    },
+    {
+      "source_id": "agentdojo",
+      "partition_count": 1,
+      "total_size_bytes": 617,
+      "formats": [
+        "jsonl.gz"
+      ],
+      "partitions": [
+        {
+          "partition_path": "D:\\datasetASwarm\\outputs\\lake\\source=agentdojo\\part-f9e901a3.jsonl.gz",
+          "source_id": "agentdojo",
+          "format": "jsonl.gz",
+          "size_bytes": 617,
+          "record_count": 0,
+          "compression": "gzip",
+          "last_modified": "2026-08-07T21:06:50.260485Z"
+        }
+      ]
+    },
+    {
+      "source_id": "garak",
+      "partition_count": 1,
+      "total_size_bytes": 723,
+      "formats": [
+        "jsonl.gz"
+      ],
+      "partitions": [
+        {
+          "partition_path": "D:\\datasetASwarm\\outputs\\lake\\source=garak\\part-013c395a.jsonl.gz",
+          "source_id": "garak",
+          "format": "jsonl.gz",
+          "size_bytes": 723,
+          "record_count": 0,
+          "compression": "gzip",
+          "last_modified": "2026-08-07T21:06:50.264555Z"
+        }
+      ]
+    },
+    {
+      "source_id": "hackaprompt",
+      "partition_count": 1,
+      "total_size_bytes": 1432,
+      "formats": [
+        "jsonl.gz"
+      ],
+      "partitions": [
+        {
+          "partition_path": "D:\\datasetASwarm\\outputs\\lake\\source=hackaprompt\\part-272e27f6.jsonl.gz",
+          "source_id": "hackaprompt",
+          "format": "jsonl.gz",
+          "size_bytes": 1432,
+          "record_count": 0,
+          "compression": "gzip",
+          "last_modified": "2026-08-07T21:06:50.267764Z"
+        }
+      ]
+    },
+    {
+      "source_id": "jailbreakbench",
+      "partition_count": 1,
+      "total_size_bytes": 724,
+      "formats": [
+        "jsonl.gz"
+      ],
+      "partitions": [
+        {
+          "partition_path": "D:\\datasetASwarm\\outputs\\lake\\source=jailbreakbench\\part-90bc50c8.jsonl.gz",
+          "source_id": "jailbreakbench",
+          "format": "jsonl.gz",
+          "size_bytes": 724,
+          "record_count": 0,
+          "compression": "gzip",
+          "last_modified": "2026-08-07T21:06:50.292473Z"
+        }
+      ]
+    },
+    {
+      "source_id": "promptinject",
+      "partition_count": 1,
+      "total_size_bytes": 734,
+      "formats": [
+        "jsonl.gz"
+      ],
+      "partitions": [
+        {
+          "partition_path": "D:\\datasetASwarm\\outputs\\lake\\source=promptinject\\part-43df505e.jsonl.gz",
+          "source_id": "promptinject",
+          "format": "jsonl.gz",
+          "size_bytes": 734,
+          "record_count": 0,
+          "compression": "gzip",
+          "last_modified": "2026-08-07T21:06:50.298756Z"
+        }
+      ]
+    },
+    {
+      "source_id": "pyrit",
+      "partition_count": 1,
+      "total_size_bytes": 623,
+      "formats": [
+        "jsonl.gz"
+      ],
+      "partitions": [
+        {
+          "partition_path": "D:\\datasetASwarm\\outputs\\lake\\source=pyrit\\part-8b77ee76.jsonl.gz",
+          "source_id": "pyrit",
+          "format": "jsonl.gz",
+          "size_bytes": 623,
+          "record_count": 0,
+          "compression": "gzip",
+          "last_modified": "2026-08-07T21:06:50.303865Z"
+        }
+      ]
+    }
+  ],
+  "statistics": {
+    "total_records": 22,
+    "total_turns": 22,
+    "total_messages": 22,
+    "average_turns_per_record": 1.0,
+    "average_messages_per_record": 1.0,
+    "average_prompt_length": 61.73,
+    "maximum_prompt_length": 101,
+    "minimum_prompt_length": 9,
+    "storage_size_bytes": 5561,
+    "compressed_size_bytes": 5561,
+    "record_distribution_per_dataset": {
+      "advbench": 2,
+      "agentdojo": 2,
+      "garak": 2,
+      "hackaprompt": 10,
+      "jailbreakbench": 2,
+      "promptinject": 2,
+      "pyrit": 2
+    },
+    "taxonomy_distribution": {
+      "AUAO-JB-ADV-GCG": 2,
+      "AUAO-PI-IND-DOC-PDF": 2,
+      "AUAO-PI-DIR-RO-AUTH-SYS": 5,
+      "Direct Prompt Injection": 10,
+      "Jailbreak -> Physical Harm": 1,
+      "Jailbreak -> Hate Speech": 1,
+      "AUAO-PI-DIR-DEL-XML": 1
+    },
+    "difficulty_distribution": {
+      "Hard": 6,
+      "Medium": 6,
+      "Level 1": 3,
+      "Level 2": 2,
+      "Level 3": 2,
+      "Level 4": 1,
+      "Level 5": 1,
+      "Level 6": 1
+    },
+    "evaluation_success_rate": 0.7727,
+    "average_severity_score": 5.73,
+    "unique_target_models": [
+      "claude-2",
+      "claude-3-5-sonnet",
+      "flan-t5-xxl",
+      "gpt-3.5-turbo",
+      "gpt-4",
+      "gpt-4-turbo",
+      "gpt-4o",
+      "llama-2-70b",
+      "llama-2-70b-chat",
+      "llama-3-8b",
+      "mistral-7b",
+      "vicuna-13b",
+      "vicuna-7b"
+    ],
+    "dataset_sizes": {
+      "advbench": 708,
+      "agentdojo": 617,
+      "garak": 723,
+      "hackaprompt": 1432,
+      "jailbreakbench": 724,
+      "promptinject": 734,
+      "pyrit": 623
+    }
+  },
+  "coverage": {
+    "total_taxonomy_nodes": 79,
+    "covered_taxonomy_nodes_count": 4,
+    "coverage_percentage": 5.06,
+    "root_class_coverage": {
+      "AUAO-RC-01": 8,
+      "AUAO-RC-02": 2,
+      "AUAO-RC-03": 0,
+      "AUAO-RC-04": 0,
+      "AUAO-RC-05": 0,
+      "AUAO-RC-06": 0,
+      "AUAO-RC-07": 0,
+      "AUAO-RC-08": 0,
+      "AUAO-RC-09": 0,
+      "AUAO-RC-10": 0
+    },
+    "represented_taxonomy_nodes": [
+      "AUAO-JB-ADV-GCG",
+      "AUAO-PI-DIR-DEL-XML",
+      "AUAO-PI-DIR-RO-AUTH-SYS",
+      "AUAO-PI-IND-DOC-PDF"
+    ],
+    "uncovered_taxonomy_nodes": [
+      "AUAO-JB-ADV",
+      "AUAO-JB-ADV-TOK",
+      "AUAO-JB-HYP",
+      "AUAO-JB-HYP-GAME",
+      "AUAO-JB-HYP-RESEARCH",
+      "AUAO-JB-MULTI",
+      "AUAO-JB-MULTI-CREEP",
+      "AUAO-JB-MULTI-SOCRATIC",
+      "AUAO-JB-TRANS",
+      "AUAO-JB-TRANS-CIPHER",
+      "AUAO-JB-TRANS-LOW",
+      "AUAO-LK-COMP",
+      "AUAO-LK-COT",
+      "AUAO-LK-COT-TRACE",
+      "AUAO-LK-DIR",
+      "AUAO-LK-DIR-REPEAT",
+      "AUAO-LK-DIR-TRANSLATE",
+      "AUAO-MA-COLL",
+      "AUAO-MA-IMPER",
+      "AUAO-MA-PROP",
+      "AUAO-MCP-DISC",
+      "AUAO-MCP-DISC-SPOOF",
+      "AUAO-MCP-PROMPT",
+      "AUAO-MCP-TOOL",
+      "AUAO-MCP-TOOL-EXFIL",
+      "AUAO-MEM-LTM",
+      "AUAO-MEM-LTM-PERSIST",
+      "AUAO-MEM-STM",
+      "AUAO-MM-AUDIO",
+      "AUAO-MM-IMG",
+      "AUAO-MM-IMG-OCR",
+      "AUAO-MM-IMG-PATCH",
+      "AUAO-MM-OBF",
+      "AUAO-MM-OBF-B64",
+      "AUAO-MM-OBF-UNICODE",
+      "AUAO-PI-DIR",
+      "AUAO-PI-DIR-CTX",
+      "AUAO-PI-DIR-DEL",
+      "AUAO-PI-DIR-DEL-JSON",
+      "AUAO-PI-DIR-DEL-MD",
+      "AUAO-PI-DIR-RO",
+      "AUAO-PI-DIR-RO-AUTH",
+      "AUAO-PI-DIR-RO-AUTH-ADM",
+      "AUAO-PI-DIR-RO-PERS",
+      "AUAO-PI-IND",
+      "AUAO-PI-IND-API",
+      "AUAO-PI-IND-API-JSON",
+      "AUAO-PI-IND-DOC",
+      "AUAO-PI-IND-DOC-CSV",
+      "AUAO-PI-IND-WEB",
+      "AUAO-PI-IND-WEB-DOM",
+      "AUAO-PI-IND-WEB-META",
+      "AUAO-RAG-HIJ",
+      "AUAO-RAG-POIS",
+      "AUAO-RAG-POIS-DOC",
+      "AUAO-RAG-POIS-EMB",
+      "AUAO-RC-01",
+      "AUAO-RC-02",
+      "AUAO-RC-03",
+      "AUAO-RC-04",
+      "AUAO-RC-05",
+      "AUAO-RC-06",
+      "AUAO-RC-07",
+      "AUAO-RC-08",
+      "AUAO-RC-09",
+      "AUAO-RC-10",
+      "AUAO-RCE-FS",
+      "AUAO-RCE-SAND",
+      "AUAO-RCE-SAND-PY",
+      "AUAO-TL-PARAM",
+      "AUAO-TL-PARAM-CMD",
+      "AUAO-TL-PARAM-SQL",
+      "AUAO-TL-SHADOW",
+      "AUAO-TL-UNAUTH",
+      "AUAO-TL-UNAUTH-BYPASS"
+    ],
+    "covered_leaf_nodes": [
+      "AUAO-JB-ADV-GCG",
+      "AUAO-PI-DIR-DEL-XML",
+      "AUAO-PI-DIR-RO-AUTH-SYS",
+      "AUAO-PI-IND-DOC-PDF"
+    ],
+    "uncovered_leaf_nodes": [
+      "AUAO-JB-ADV-TOK",
+      "AUAO-JB-HYP-GAME",
+      "AUAO-JB-HYP-RESEARCH",
+      "AUAO-JB-MULTI-CREEP",
+      "AUAO-JB-MULTI-SOCRATIC",
+      "AUAO-JB-TRANS-CIPHER",
+      "AUAO-JB-TRANS-LOW",
+      "AUAO-LK-COMP",
+      "AUAO-LK-COT-TRACE",
+      "AUAO-LK-DIR-REPEAT",
+      "AUAO-LK-DIR-TRANSLATE",
+      "AUAO-MA-COLL",
+      "AUAO-MA-IMPER",
+      "AUAO-MA-PROP",
+      "AUAO-MCP-DISC-SPOOF",
+      "AUAO-MCP-PROMPT",
+      "AUAO-MCP-TOOL-EXFIL",
+      "AUAO-MEM-LTM-PERSIST",
+      "AUAO-MEM-STM",
+      "AUAO-MM-AUDIO",
+      "AUAO-MM-IMG-OCR",
+      "AUAO-MM-IMG-PATCH",
+      "AUAO-MM-OBF-B64",
+      "AUAO-MM-OBF-UNICODE",
+      "AUAO-PI-DIR-CTX",
+      "AUAO-PI-DIR-DEL-JSON",
+      "AUAO-PI-DIR-DEL-MD",
+      "AUAO-PI-DIR-RO-AUTH-ADM",
+      "AUAO-PI-DIR-RO-PERS",
+      "AUAO-PI-IND-API-JSON",
+      "AUAO-PI-IND-DOC-CSV",
+      "AUAO-PI-IND-WEB-DOM",
+      "AUAO-PI-IND-WEB-META",
+      "AUAO-RAG-HIJ",
+      "AUAO-RAG-POIS-DOC",
+      "AUAO-RAG-POIS-EMB",
+      "AUAO-RCE-FS",
+      "AUAO-RCE-SAND-PY",
+      "AUAO-TL-PARAM-CMD",
+      "AUAO-TL-PARAM-SQL",
+      "AUAO-TL-SHADOW",
+      "AUAO-TL-UNAUTH-BYPASS"
+    ],
+    "depth_histogram": {
+      "0": 4
+    },
+    "dataset_contribution_per_root_class": {
+      "advbench": {
+        "AUAO-RC-01": 0,
+        "AUAO-RC-02": 2,
+        "AUAO-RC-03": 0,
+        "AUAO-RC-04": 0,
+        "AUAO-RC-05": 0,
+        "AUAO-RC-06": 0,
+        "AUAO-RC-07": 0,
+        "AUAO-RC-08": 0,
+        "AUAO-RC-09": 0,
+        "AUAO-RC-10": 0
+      },
+      "agentdojo": {
+        "AUAO-RC-01": 2,
+        "AUAO-RC-02": 0,
+        "AUAO-RC-03": 0,
+        "AUAO-RC-04": 0,
+        "AUAO-RC-05": 0,
+        "AUAO-RC-06": 0,
+        "AUAO-RC-07": 0,
+        "AUAO-RC-08": 0,
+        "AUAO-RC-09": 0,
+        "AUAO-RC-10": 0
+      },
+      "garak": {
+        "AUAO-RC-01": 2,
+        "AUAO-RC-02": 0,
+        "AUAO-RC-03": 0,
+        "AUAO-RC-04": 0,
+        "AUAO-RC-05": 0,
+        "AUAO-RC-06": 0,
+        "AUAO-RC-07": 0,
+        "AUAO-RC-08": 0,
+        "AUAO-RC-09": 0,
+        "AUAO-RC-10": 0
+      },
+      "hackaprompt": {
+        "AUAO-RC-01": 0,
+        "AUAO-RC-02": 0,
+        "AUAO-RC-03": 0,
+        "AUAO-RC-04": 0,
+        "AUAO-RC-05": 0,
+        "AUAO-RC-06": 0,
+        "AUAO-RC-07": 0,
+        "AUAO-RC-08": 0,
+        "AUAO-RC-09": 0,
+        "AUAO-RC-10": 0
+      },
+      "jailbreakbench": {
+        "AUAO-RC-01": 0,
+        "AUAO-RC-02": 0,
+        "AUAO-RC-03": 0,
+        "AUAO-RC-04": 0,
+        "AUAO-RC-05": 0,
+        "AUAO-RC-06": 0,
+        "AUAO-RC-07": 0,
+        "AUAO-RC-08": 0,
+        "AUAO-RC-09": 0,
+        "AUAO-RC-10": 0
+      },
+      "promptinject": {
+        "AUAO-RC-01": 2,
+        "AUAO-RC-02": 0,
+        "AUAO-RC-03": 0,
+        "AUAO-RC-04": 0,
+        "AUAO-RC-05": 0,
+        "AUAO-RC-06": 0,
+        "AUAO-RC-07": 0,
+        "AUAO-RC-08": 0,
+        "AUAO-RC-09": 0,
+        "AUAO-RC-10": 0
+      },
+      "pyrit": {
+        "AUAO-RC-01": 2,
+        "AUAO-RC-02": 0,
+        "AUAO-RC-03": 0,
+        "AUAO-RC-04": 0,
+        "AUAO-RC-05": 0,
+        "AUAO-RC-06": 0,
+        "AUAO-RC-07": 0,
+        "AUAO-RC-08": 0,
+        "AUAO-RC-09": 0,
+        "AUAO-RC-10": 0
+      }
+    }
+  },
+  "quality": {
+    "total_records_audited": 22,
+    "schema_compliance_rate": 1.0,
+    "validation_pass_rate": 0.0,
+    "missing_field_counts": {
+      "taxonomy_node": 0,
+      "turns": 0,
+      "evaluations": 0,
+      "dataset_metadata": 0,
+      "parser_metadata": 0,
+      "validation": 22
+    },
+    "malformed_records": 0,
+    "duplicate_sample_ids": 0,
+    "duplicate_semantic_hashes": 2,
+    "annotation_confidence_average": 0.0,
+    "evaluation_completeness": 1.0,
+    "parser_version_distribution": {
+      "1.0.0": 22
+    },
+    "dataset_version_distribution": {
+      "advbench": 2,
+      "agentdojo": 2,
+      "garak": 2,
+      "hackaprompt": 10,
+      "jailbreakbench": 2,
+      "promptinject": 2,
+      "pyrit": 2
+    },
+    "records_with_missing_taxonomy": 0,
+    "records_with_missing_evaluations": 0,
+    "records_with_missing_validation_metadata": 22
+  },
+  "verification": {
+    "total_partitions_scanned": 7,
+    "verified_files": 7,
+    "missing_files": [],
+    "corrupted_files": [],
+    "modified_files": [],
+    "unknown_files": [
+      "D:\\datasetASwarm\\outputs\\lake\\source=advbench\\part-89f968a0.jsonl.gz",
+      "D:\\datasetASwarm\\outputs\\lake\\source=agentdojo\\part-f9e901a3.jsonl.gz",
+      "D:\\datasetASwarm\\outputs\\lake\\source=garak\\part-013c395a.jsonl.gz",
+      "D:\\datasetASwarm\\outputs\\lake\\source=hackaprompt\\part-272e27f6.jsonl.gz",
+      "D:\\datasetASwarm\\outputs\\lake\\source=jailbreakbench\\part-90bc50c8.jsonl.gz",
+      "D:\\datasetASwarm\\outputs\\lake\\source=promptinject\\part-43df505e.jsonl.gz",
+      "D:\\datasetASwarm\\outputs\\lake\\source=pyrit\\part-8b77ee76.jsonl.gz"
+    ],
+    "verification_percentage": 100.0,
+    "overall_status": "HEALTHY",
+    "details": [
+      {
+        "partition_path": "D:\\datasetASwarm\\outputs\\lake\\source=advbench\\part-89f968a0.jsonl.gz",
+        "exists": true,
+        "expected_size_bytes": 708,
+        "actual_size_bytes": 708,
+        "expected_sha256": "92a67d4ab97783b62de53c9602db18d80df2ae9ff336a48c05141585ce3c7713",
+        "actual_sha256": "92a67d4ab97783b62de53c9602db18d80df2ae9ff336a48c05141585ce3c7713",
+        "parser_version": null,
+        "dataset_version": null,
+        "plugin_name": null,
+        "manifest_timestamp": null,
+        "modification_timestamp": "2026-08-07T21:06:50.255497+00:00",
+        "status": "UNKNOWN"
+      },
+      {
+        "partition_path": "D:\\datasetASwarm\\outputs\\lake\\source=agentdojo\\part-f9e901a3.jsonl.gz",
+        "exists": true,
+        "expected_size_bytes": 617,
+        "actual_size_bytes": 617,
+        "expected_sha256": "d36b7b27658bccd2c56d43a5db4ccc3741c046d9f932351b32f90a719dccfdf3",
+        "actual_sha256": "d36b7b27658bccd2c56d43a5db4ccc3741c046d9f932351b32f90a719dccfdf3",
+        "parser_version": null,
+        "dataset_version": null,
+        "plugin_name": null,
+        "manifest_timestamp": null,
+        "modification_timestamp": "2026-08-07T21:06:50.260485+00:00",
+        "status": "UNKNOWN"
+      },
+      {
+        "partition_path": "D:\\datasetASwarm\\outputs\\lake\\source=garak\\part-013c395a.jsonl.gz",
+        "exists": true,
+        "expected_size_bytes": 723,
+        "actual_size_bytes": 723,
+        "expected_sha256": "20565201addcdfb2bb9e150a62cc5bc6beb6bf4cf1bdaad46d6e2d51e16e6a4e",
+        "actual_sha256": "20565201addcdfb2bb9e150a62cc5bc6beb6bf4cf1bdaad46d6e2d51e16e6a4e",
+        "parser_version": null,
+        "dataset_version": null,
+        "plugin_name": null,
+        "manifest_timestamp": null,
+        "modification_timestamp": "2026-08-07T21:06:50.264555+00:00",
+        "status": "UNKNOWN"
+      },
+      {
+        "partition_path": "D:\\datasetASwarm\\outputs\\lake\\source=hackaprompt\\part-272e27f6.jsonl.gz",
+        "exists": true,
+        "expected_size_bytes": 1432,
+        "actual_size_bytes": 1432,
+        "expected_sha256": "156e6520c7bdb1377f7885f0b6cba1abb592ec41c2e773ba124ccb27dda9d65f",
+        "actual_sha256": "156e6520c7bdb1377f7885f0b6cba1abb592ec41c2e773ba124ccb27dda9d65f",
+        "parser_version": null,
+        "dataset_version": null,
+        "plugin_name": null,
+        "manifest_timestamp": null,
+        "modification_timestamp": "2026-08-07T21:06:50.267764+00:00",
+        "status": "UNKNOWN"
+      },
+      {
+        "partition_path": "D:\\datasetASwarm\\outputs\\lake\\source=jailbreakbench\\part-90bc50c8.jsonl.gz",
+        "exists": true,
+        "expected_size_bytes": 724,
+        "actual_size_bytes": 724,
+        "expected_sha256": "7bcd22db08822642253b3952920d20fd05e567070cb10998cf484fd6c36d83e3",
+        "actual_sha256": "7bcd22db08822642253b3952920d20fd05e567070cb10998cf484fd6c36d83e3",
+        "parser_version": null,
+        "dataset_version": null,
+        "plugin_name": null,
+        "manifest_timestamp": null,
+        "modification_timestamp": "2026-08-07T21:06:50.292473+00:00",
+        "status": "UNKNOWN"
+      },
+      {
+        "partition_path": "D:\\datasetASwarm\\outputs\\lake\\source=promptinject\\part-43df505e.jsonl.gz",
+        "exists": true,
+        "expected_size_bytes": 734,
+        "actual_size_bytes": 734,
+        "expected_sha256": "635e22fd3222905048ee240aefc7cb2cc05fe6a12f07514e0452f5e7bcb4c998",
+        "actual_sha256": "635e22fd3222905048ee240aefc7cb2cc05fe6a12f07514e0452f5e7bcb4c998",
+        "parser_version": null,
+        "dataset_version": null,
+        "plugin_name": null,
+        "manifest_timestamp": null,
+        "modification_timestamp": "2026-08-07T21:06:50.298756+00:00",
+        "status": "UNKNOWN"
+      },
+      {
+        "partition_path": "D:\\datasetASwarm\\outputs\\lake\\source=pyrit\\part-8b77ee76.jsonl.gz",
+        "exists": true,
+        "expected_size_bytes": 623,
+        "actual_size_bytes": 623,
+        "expected_sha256": "622dc082c11d669de5b5e4c33d9aa0b9e404e48fceee5467c3d181c4d970d944",
+        "actual_sha256": "622dc082c11d669de5b5e4c33d9aa0b9e404e48fceee5467c3d181c4d970d944",
+        "parser_version": null,
+        "dataset_version": null,
+        "plugin_name": null,
+        "manifest_timestamp": null,
+        "modification_timestamp": "2026-08-07T21:06:50.303865+00:00",
+        "status": "UNKNOWN"
+      }
+    ]
+  }
+}
