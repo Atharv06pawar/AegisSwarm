@@ -1,0 +1,1 @@
+{"mission_id":"e1773a9e-4054-407f-ae20-e117db363d32","objective":"Startup real runtime validation benchmark","state":"COMPLETED","target_provider":"openai","target_model":"gpt-4o","budget_usd":5.0,"attack_count":5,"successful_attacks":5,"failed_attacks":0,"cost_usd":0.5,"created_at":"2026-08-08T18:28:36.555093+00:00","updated_at":"2026-08-08T18:28:36.555105+00:00"}

@@ -1,0 +1,30 @@
+{
+  "campaign_id": "2182dd09-b697-4a17-abee-a2270f51e6c6",
+  "name": "Lifecycle Test",
+  "creation_timestamp": "2026-08-08T15:46:50.700994+00:00",
+  "objective": {
+    "name": "Obj",
+    "description": "",
+    "target_taxonomies": [],
+    "target_success_rate": 0.8
+  },
+  "targets": [
+    {
+      "provider": "openai",
+      "model": "gpt-4o",
+      "max_concurrency": 2
+    }
+  ],
+  "selected_datasets": [],
+  "swarm_agents": [],
+  "maximum_attacks": 5,
+  "parallel_workers": 4,
+  "budget": {
+    "max_cost_usd": 100.0,
+    "max_tokens": 1000000,
+    "current_cost_usd": 0.0,
+    "current_tokens": 0,
+    "daily_limit_usd": 50.0
+  },
+  "metadata": {}
+}

@@ -1,0 +1,1 @@
+{"mission_id":"d7140f26-d667-42de-8365-e79d2a0707db","objective":"Sample autonomous audit mission","state":"COMPLETED","target_provider":"openai","target_model":"gpt-4o","budget_usd":25.0,"attack_count":10,"successful_attacks":10,"failed_attacks":0,"cost_usd":1.0,"created_at":"2026-08-08T21:43:16.881263+00:00","updated_at":"2026-08-08T21:43:16.881275+00:00"}

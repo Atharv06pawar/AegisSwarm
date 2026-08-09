@@ -98,3 +98,48 @@ def test_invalid_dataset_ingest_validation(test_client: TestClient):
     assert res.status_code == 400
     data = res.json()
     assert "detail" in data
+
+def test_campaigns_api_endpoints(test_client: TestClient):
+    """Test POST /api/v1/campaigns, GET /campaigns, GET /campaigns/{id}, start, pause, resume, cancel, metrics, report."""
+    config_payload = {
+        "name": "API Test Campaign",
+        "objective": {"name": "Test Obj", "description": "Desc"},
+        "targets": [{"provider": "openai", "model": "gpt-4o", "max_concurrency": 2}],
+        "selected_datasets": ["jailbreakbench"],
+        "swarm_agents": ["jailbreak"],
+        "maximum_attacks": 10,
+        "parallel_workers": 2,
+        "budget": {"max_cost_usd": 10.0}
+    }
+
+    create_res = test_client.post("/api/v1/campaigns", json=config_payload)
+    assert create_res.status_code == 201
+    config = create_res.json()
+    cid = config["campaign_id"]
+
+    list_res = test_client.get("/api/v1/campaigns")
+    assert list_res.status_code == 200
+    assert len(list_res.json()) >= 1
+
+    get_res = test_client.get(f"/api/v1/campaigns/{cid}")
+    assert get_res.status_code == 200
+    assert get_res.json()["name"] == "API Test Campaign"
+
+    start_res = test_client.post(f"/api/v1/campaigns/{cid}/start")
+    assert start_res.status_code == 200
+
+    pause_res = test_client.post(f"/api/v1/campaigns/{cid}/pause")
+    assert pause_res.status_code == 200
+
+    resume_res = test_client.post(f"/api/v1/campaigns/{cid}/resume")
+    assert resume_res.status_code == 200
+
+    cancel_res = test_client.post(f"/api/v1/campaigns/{cid}/cancel")
+    assert cancel_res.status_code == 200
+
+    metrics_res = test_client.get(f"/api/v1/campaigns/{cid}/metrics")
+    assert metrics_res.status_code == 200
+
+    report_res = test_client.get(f"/api/v1/campaigns/{cid}/report?format=markdown")
+    assert report_res.status_code == 200
+    assert "Campaign Audit Report: API Test Campaign" in report_res.text

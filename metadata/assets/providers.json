@@ -1,0 +1,99 @@
+[
+  {
+    "provider_id": "openai",
+    "name": "OpenAI",
+    "enabled": true,
+    "model": "gpt-4o",
+    "temperature": 0.7,
+    "max_tokens": 2048
+  },
+  {
+    "provider_id": "anthropic",
+    "name": "Anthropic",
+    "enabled": true,
+    "model": "claude-3-5-sonnet-20241022",
+    "temperature": 0.7,
+    "max_tokens": 2048
+  },
+  {
+    "provider_id": "gemini",
+    "name": "Google Gemini",
+    "enabled": true,
+    "model": "gemini-1.5-pro",
+    "temperature": 0.7,
+    "max_tokens": 2048
+  },
+  {
+    "provider_id": "openrouter",
+    "name": "OpenRouter",
+    "enabled": true,
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "temperature": 0.7,
+    "max_tokens": 2048
+  },
+  {
+    "provider_id": "ollama",
+    "name": "Ollama Local",
+    "enabled": true,
+    "model": "llama3",
+    "temperature": 0.7,
+    "max_tokens": 2048
+  },
+  {
+    "provider_id": "azure",
+    "name": "Azure OpenAI",
+    "enabled": false,
+    "model": "gpt-4o",
+    "temperature": 0.7,
+    "max_tokens": 2048
+  },
+  {
+    "provider_id": "groq",
+    "name": "Groq LPU",
+    "enabled": true,
+    "model": "llama-3.3-70b-versatile",
+    "temperature": 0.7,
+    "max_tokens": 2048
+  },
+  {
+    "provider_id": "deepseek",
+    "name": "DeepSeek AI",
+    "enabled": true,
+    "model": "deepseek-chat",
+    "temperature": 0.7,
+    "max_tokens": 2048
+  },
+  {
+    "provider_id": "mistral",
+    "name": "Mistral AI",
+    "enabled": true,
+    "model": "mistral-large-latest",
+    "temperature": 0.7,
+    "max_tokens": 2048
+  },
+  {
+    "provider_id": "custom",
+    "name": "Custom OpenAI-Compatible Endpoint",
+    "enabled": false,
+    "model": "custom-model",
+    "temperature": 0.7,
+    "max_tokens": 2048,
+    "api_base": "http://localhost:8080/v1"
+  },
+  {
+    "provider_id": "test_provider",
+    "name": "Test LLM Provider",
+    "enabled": true,
+    "model": "test-v1",
+    "temperature": 0.5,
+    "max_tokens": 1024
+  },
+  {
+    "provider_id": "test_integration_llm",
+    "name": "Integration Test Provider",
+    "enabled": true,
+    "model": "gpt-4-integration",
+    "temperature": 0.7,
+    "max_tokens": 2048
+  }
+]

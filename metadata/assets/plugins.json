@@ -1,0 +1,44 @@
+[
+  {
+    "id": "hackaprompt_adapter",
+    "name": "HackAPrompt Dataset Adapter",
+    "type": "Dataset Adapter",
+    "enabled": true
+  },
+  {
+    "id": "agentdojo_adapter",
+    "name": "AgentDojo Dataset Adapter",
+    "type": "Dataset Adapter",
+    "enabled": true
+  },
+  {
+    "id": "garak_adapter",
+    "name": "Garak Vulnerability Adapter",
+    "type": "Dataset Adapter",
+    "enabled": true
+  },
+  {
+    "id": "pyrit_adapter",
+    "name": "PyRIT Red-Team Adapter",
+    "type": "Dataset Adapter",
+    "enabled": true
+  },
+  {
+    "id": "promptinject_adapter",
+    "name": "PromptInject Adapter",
+    "type": "Dataset Adapter",
+    "enabled": true
+  },
+  {
+    "id": "jailbreakbench_adapter",
+    "name": "JailbreakBench Adapter",
+    "type": "Dataset Adapter",
+    "enabled": true
+  },
+  {
+    "id": "advbench_adapter",
+    "name": "AdvBench Adapter",
+    "type": "Dataset Adapter",
+    "enabled": true
+  }
+]

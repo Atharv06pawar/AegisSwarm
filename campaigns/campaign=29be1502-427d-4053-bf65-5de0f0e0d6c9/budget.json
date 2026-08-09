@@ -1,0 +1,7 @@
+{
+  "max_cost_usd": 100.0,
+  "max_tokens": 1000000,
+  "current_cost_usd": 0.0,
+  "current_tokens": 0,
+  "daily_limit_usd": 50.0
+}

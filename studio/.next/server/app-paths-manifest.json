@@ -1,8 +1,8 @@
 {
-  "/ontology/page": "app/ontology/page.js",
-  "/settings/page": "app/settings/page.js",
-  "/reports/page": "app/reports/page.js",
   "/plugins/page": "app/plugins/page.js",
-  "/search/page": "app/search/page.js",
-  "/page": "app/page.js"
+  "/ingestion/page": "app/ingestion/page.js",
+  "/corpus/page": "app/corpus/page.js",
+  "/ontology/page": "app/ontology/page.js",
+  "/page": "app/page.js",
+  "/reports/page": "app/reports/page.js"
 }

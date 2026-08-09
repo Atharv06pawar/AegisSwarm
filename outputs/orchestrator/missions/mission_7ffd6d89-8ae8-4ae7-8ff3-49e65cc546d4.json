@@ -1,0 +1,1 @@
+{"mission_id":"7ffd6d89-8ae8-4ae7-8ff3-49e65cc546d4","objective":"API Mission Test Objective","state":"COMPLETED","target_provider":"openai","target_model":"gpt-4o","budget_usd":15.0,"attack_count":5,"successful_attacks":5,"failed_attacks":0,"cost_usd":0.5,"created_at":"2026-08-08T18:07:31.842045+00:00","updated_at":"2026-08-08T18:07:31.842056+00:00"}

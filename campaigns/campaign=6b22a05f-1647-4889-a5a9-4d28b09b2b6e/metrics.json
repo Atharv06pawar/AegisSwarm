@@ -1,0 +1,21 @@
+{
+  "total_attacks": 0,
+  "completed_attacks": 2,
+  "failed_attacks": 0,
+  "running_attacks": 0,
+  "queued_attacks": 0,
+  "provider_usage": {
+    "openai": 2
+  },
+  "average_latency": 0.01,
+  "p95_latency": 0.01,
+  "p99_latency": 0.01,
+  "average_cost": 0.00025,
+  "tokens_consumed": 52,
+  "attacks_per_minute": 2000.0,
+  "campaign_duration_ms": 11.8,
+  "retry_count": 0,
+  "mutation_count": 0,
+  "evaluation_count": 2,
+  "learning_gain": 0.0
+}

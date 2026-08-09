@@ -1,6 +1,6 @@
 # AegisSwarm Universal AI Attack Corpus Research Whitepaper
 
-**Generated UTC Timestamp**: `2026-08-08T13:16:22.548705+00:00`  
+**Generated UTC Timestamp**: `2026-08-08T22:10:55.220435+00:00`  
 **Ontology Framework**: `AegisSwarm Universal Attack Ontology (AUAO v1.0)`  
 **Data Lake Status**: `HEALTHY`
 
@@ -8,41 +8,41 @@
 
 ## 1. Executive Summary
 
-This publication report presents the authoritative status of the **AegisSwarm AI Attack Corpus**. The corpus currently unifies **7 benchmark datasets** comprising **22 AttackRecord entries** across **22 conversation turns** and **22 messages**. Physical data lake storage footprint spans **0.01 MB** across **7 partition files**.
+This publication report presents the authoritative status of the **AegisSwarm AI Attack Corpus**. The corpus currently unifies **7 benchmark datasets** comprising **550 AttackRecord entries** across **86 conversation turns** and **86 messages**. Physical data lake storage footprint spans **1.87 MB** across **175 partition files**.
 
 ## 2. Corpus Overview
 
 | Metric | Value |
 | :--- | :--- |
 | **Total Datasets** | 7 |
-| **Total Partitions** | 7 |
-| **Total Records** | 22 |
-| **Total Turns** | 22 |
-| **Total Messages** | 22 |
-| **Storage Size** | 0.01 MB |
+| **Total Partitions** | 175 |
+| **Total Records** | 550 |
+| **Total Turns** | 86 |
+| **Total Messages** | 86 |
+| **Storage Size** | 1.87 MB |
 | **Data Lake Health** | `HEALTHY` (100.0%) |
 
 ## 3. Dataset Inventory
 
 | Dataset ID | Partitions | Formats | Total Size (Bytes) |
 | :--- | :---: | :--- | :--- |
-| `advbench` | 1 | jsonl.gz | 708 |
-| `agentdojo` | 1 | jsonl.gz | 617 |
-| `garak` | 1 | jsonl.gz | 723 |
-| `hackaprompt` | 1 | jsonl.gz | 1,432 |
-| `jailbreakbench` | 1 | jsonl.gz | 724 |
-| `promptinject` | 1 | jsonl.gz | 734 |
-| `pyrit` | 1 | jsonl.gz | 623 |
+| `advbench` | 25 | jsonl.gz, parquet | 275,004 |
+| `agentdojo` | 25 | jsonl.gz, parquet | 267,156 |
+| `garak` | 25 | jsonl.gz, parquet | 273,594 |
+| `hackaprompt` | 25 | jsonl.gz, parquet | 305,559 |
+| `jailbreakbench` | 25 | jsonl.gz, parquet | 281,014 |
+| `promptinject` | 25 | jsonl.gz, parquet | 277,981 |
+| `pyrit` | 25 | jsonl.gz, parquet | 276,509 |
 
 ## 4. Corpus Statistics
 
-- **Average Turns per Record**: `1.0`
-- **Average Messages per Record**: `1.0`
-- **Average Injection Prompt Length**: `61.73` characters
+- **Average Turns per Record**: `0.16`
+- **Average Messages per Record**: `0.16`
+- **Average Injection Prompt Length**: `65.73` characters
 - **Maximum Prompt Length**: `101` characters
 - **Minimum Prompt Length**: `9` characters
 - **Overall Evaluation Success Rate**: `77.27%`
-- **Average Severity Score**: `5.73 / 10.0`
+- **Average Severity Score**: `6.33 / 10.0`
 
 ## 5. AUAO v1.0 Coverage Analysis
 
@@ -54,8 +54,8 @@ This publication report presents the authoritative status of the **AegisSwarm AI
 
 | Root Domain ID | Record Count | Representation |
 | :--- | :--- | :--- |
-| `AUAO-RC-01` | 8 | ✅ Covered |
-| `AUAO-RC-02` | 2 | ✅ Covered |
+| `AUAO-RC-01` | 200 | ✅ Covered |
+| `AUAO-RC-02` | 50 | ✅ Covered |
 | `AUAO-RC-03` | 0 | ❌ Uncovered |
 | `AUAO-RC-04` | 0 | ❌ Uncovered |
 | `AUAO-RC-05` | 0 | ❌ Uncovered |
@@ -67,19 +67,19 @@ This publication report presents the authoritative status of the **AegisSwarm AI
 
 ## 6. Quality Metrics Audit
 
-- **Audited Records**: `22`
+- **Audited Records**: `550`
 - **Schema Compliance Rate**: `100.00%`
 - **Validation Pass Rate**: `0.00%`
 - **Annotation Confidence Average**: `0.0`
 - **Evaluation Completeness**: `100.00%`
 - **Duplicate Sample IDs**: `0`
-- **Duplicate Semantic Hashes**: `2`
+- **Duplicate Semantic Hashes**: `528`
 
 ## 7. Data Lake Cryptographic Verification Status
 
 - **Overall Status**: `HEALTHY`
-- **Total Partitions Scanned**: `7`
-- **Verified Files**: `7`
+- **Total Partitions Scanned**: `175`
+- **Verified Files**: `175`
 - **Missing Files**: `0`
 - **Corrupted Files**: `0`
 - **Modified Files**: `0`
@@ -105,13 +105,13 @@ This publication report presents the authoritative status of the **AegisSwarm AI
 
 | AUAO Taxonomy Node | Record Count |
 | :--- | :--- |
-| `AUAO-JB-ADV-GCG` | 2 |
-| `AUAO-PI-IND-DOC-PDF` | 2 |
-| `AUAO-PI-DIR-RO-AUTH-SYS` | 5 |
-| `Direct Prompt Injection` | 10 |
-| `Jailbreak -> Physical Harm` | 1 |
-| `Jailbreak -> Hate Speech` | 1 |
-| `AUAO-PI-DIR-DEL-XML` | 1 |
+| `AUAO-JB-ADV-GCG` | 50 |
+| `AUAO-PI-IND-DOC-PDF` | 50 |
+| `AUAO-PI-DIR-RO-AUTH-SYS` | 125 |
+| `Direct Prompt Injection` | 250 |
+| `Jailbreak -> Physical Harm` | 25 |
+| `Jailbreak -> Hate Speech` | 25 |
+| `AUAO-PI-DIR-DEL-XML` | 25 |
 
 ## 10. Recommendations & Future Work
 

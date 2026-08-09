@@ -1,0 +1,42 @@
+{
+  "campaign_id": "07ef00a7-9ce3-4bc1-a422-e5069e09354d",
+  "started_at": "2026-08-08T16:05:37.112265+00:00",
+  "completed_at": "2026-08-08T16:05:37.130255+00:00",
+  "status": "completed",
+  "progress": {
+    "total_attacks": 1,
+    "completed_attacks": 1,
+    "failed_attacks": 0,
+    "running_attacks": 0,
+    "queued_attacks": 0,
+    "percentage": 100.0
+  },
+  "metrics": {
+    "total_attacks": 0,
+    "completed_attacks": 1,
+    "failed_attacks": 0,
+    "running_attacks": 0,
+    "queued_attacks": 0,
+    "provider_usage": {
+      "openai": 1
+    },
+    "average_latency": 0.0,
+    "p95_latency": 0.0,
+    "p99_latency": 0.0,
+    "average_cost": 0.0,
+    "tokens_consumed": 500,
+    "attacks_per_minute": 924.76,
+    "campaign_duration_ms": 64.88,
+    "retry_count": 0,
+    "mutation_count": 0,
+    "evaluation_count": 1,
+    "learning_gain": 0.0
+  },
+  "budget": {
+    "max_cost_usd": 10.0,
+    "max_tokens": 1000000,
+    "current_cost_usd": 0.001,
+    "current_tokens": 500,
+    "daily_limit_usd": 50.0
+  }
+}

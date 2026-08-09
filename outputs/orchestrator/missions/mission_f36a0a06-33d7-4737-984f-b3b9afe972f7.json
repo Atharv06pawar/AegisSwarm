@@ -1,0 +1,1 @@
+{"mission_id":"f36a0a06-33d7-4737-984f-b3b9afe972f7","objective":"Sprint 17 Provider Integration Test","state":"COMPLETED","target_provider":"openai","target_model":"gpt-4o","budget_usd":10.0,"attack_count":14,"successful_attacks":14,"failed_attacks":0,"cost_usd":1.4000000000000001,"created_at":"2026-08-08T22:10:13.974808+00:00","updated_at":"2026-08-08T22:10:13.974816+00:00"}

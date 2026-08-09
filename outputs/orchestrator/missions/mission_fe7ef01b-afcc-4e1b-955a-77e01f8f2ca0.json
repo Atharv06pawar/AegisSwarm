@@ -1,0 +1,1 @@
+{"mission_id":"fe7ef01b-afcc-4e1b-955a-77e01f8f2ca0","objective":"Workflow test mission","state":"COMPLETED","target_provider":"openai","target_model":"gpt-4o","budget_usd":25.0,"attack_count":10,"successful_attacks":10,"failed_attacks":0,"cost_usd":1.0,"created_at":"2026-08-08T22:07:37.954417+00:00","updated_at":"2026-08-08T22:07:37.954425+00:00"}

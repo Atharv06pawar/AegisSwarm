@@ -1,0 +1,50 @@
+[
+  {
+    "id": "shadow_agent",
+    "name": "ShadowSwarmAgent",
+    "family": "Stealth",
+    "mutation_family": "Persona",
+    "mode": "Single turn",
+    "enabled": true
+  },
+  {
+    "id": "reflexive_agent",
+    "name": "ReflexiveSwarmAgent",
+    "family": "Adaptive",
+    "mutation_family": "XML",
+    "mode": "Multi turn",
+    "enabled": true
+  },
+  {
+    "id": "evolutionary_agent",
+    "name": "EvolutionarySwarmAgent",
+    "family": "Genetic",
+    "mutation_family": "Markdown",
+    "mode": "Single turn",
+    "enabled": true
+  },
+  {
+    "id": "adaptive_agent",
+    "name": "AdaptiveSwarmAgent",
+    "family": "Autonomous",
+    "mutation_family": "Unicode",
+    "mode": "Multi turn",
+    "enabled": true
+  },
+  {
+    "id": "test_agent_1",
+    "name": "Custom Test Agent",
+    "family": "Stealth",
+    "mutation_family": "Persona",
+    "mode": "Single turn",
+    "enabled": true
+  },
+  {
+    "id": "sprint17_stealth_agent",
+    "name": "Sprint17StealthAgent",
+    "family": "Stealth",
+    "mutation_family": "Persona",
+    "mode": "Single turn",
+    "enabled": true
+  }
+]

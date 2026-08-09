@@ -1,0 +1,20 @@
+[
+  {
+    "worker_id": "68e8e0c7-4a7d-4b55-8fd9-401894227f65",
+    "provider": "openai",
+    "model": "gpt-4o",
+    "status": "idle",
+    "current_attack": null,
+    "current_campaign": "329b001e-661b-48c4-aa61-e11660804527",
+    "last_heartbeat": "2026-08-08T16:00:24.009646+00:00"
+  },
+  {
+    "worker_id": "900dee9e-c187-4e82-afa7-8ab26c83d12d",
+    "provider": "openai",
+    "model": "gpt-4o",
+    "status": "idle",
+    "current_attack": null,
+    "current_campaign": "329b001e-661b-48c4-aa61-e11660804527",
+    "last_heartbeat": "2026-08-08T16:00:24.009662+00:00"
+  }
+]

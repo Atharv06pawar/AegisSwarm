@@ -1,0 +1,70 @@
+{
+  "benchmark_uuid": "bench_dae35632",
+  "mission_uuids": [
+    "8a5e3521-a263-41d8-a4d8-82e62cb3db48"
+  ],
+  "dataset_versions": {
+    "hackaprompt": "v1.0.0",
+    "agentdojo": "v1.0.0",
+    "garak": "v1.0.0",
+    "pyrit": "v1.0.0",
+    "promptinject": "v1.0.0",
+    "jailbreakbench": "v1.0.0",
+    "advbench": "v1.0.0"
+  },
+  "dataset_checksums": {
+    "hackaprompt": "sha256:487e0c3f492ebf47ffd6bd6f0d320e1e19780470a3bcca60b790606cbdf0e686",
+    "agentdojo": "sha256:a123083cd45c798a792582a8edfd871c085a02b62d96bfffd99a2fc47df8e1da",
+    "garak": "sha256:7da23e67bad73c421b5a43b87003396f89049e8f369687266a28127600831853",
+    "pyrit": "sha256:bfb13623408c18df0f8f579a0326e068f6400444043f084da5ee62ca784ce140",
+    "promptinject": "sha256:9edc74ab52bb8d1dc0707a8df016e32558631ea04a0352940ff5975169854b5b",
+    "jailbreakbench": "sha256:581416c860ac2b96d86f4a4b0c7ac035d33b49dcc384e4bb2a9bb46c6391b614",
+    "advbench": "sha256:76248a4cd0e5610e202f1bb11503d3956fc1bb806af3afb7e7b2718fc4fe33a5"
+  },
+  "dataset_record_counts": {
+    "hackaprompt": 10,
+    "agentdojo": 2,
+    "garak": 2,
+    "pyrit": 2,
+    "promptinject": 2,
+    "jailbreakbench": 2,
+    "advbench": 2
+  },
+  "provider": "openai",
+  "model": "gpt-4o",
+  "mutation_families": [
+    "Persona",
+    "Roleplay",
+    "Encoding",
+    "XML",
+    "Markdown",
+    "Unicode",
+    "Recursive"
+  ],
+  "swarm_agents": [
+    "ShadowSwarmAgent",
+    "ReflexiveSwarmAgent",
+    "EvolutionarySwarmAgent",
+    "AdaptiveSwarmAgent"
+  ],
+  "orchestrator_version": "2.0.0",
+  "git_commit_hash": "abccfc5200b5698ad3c3063c32774081447ef1df",
+  "python_version": "3.13.5",
+  "os_info": "Windows 11 (AMD64)",
+  "dependency_versions": {
+    "pydantic": "2.13.4",
+    "fastapi": "0.120.4",
+    "uvicorn": "0.38.0",
+    "pytest": "9.1.1",
+    "numpy": "2.4.2"
+  },
+  "execution_timestamp": "2026-08-08T22:11:01.351714+00:00",
+  "random_seed": 42,
+  "configuration_snapshot": {
+    "max_attacks_per_dataset": 5,
+    "parallelism": 4,
+    "enable_learning": true,
+    "enable_telemetry": true,
+    "objective": "AegisSwarm Production Research Benchmark Harness Validation Run"
+  }
+}

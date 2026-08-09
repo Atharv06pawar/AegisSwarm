@@ -1,0 +1,1 @@
+{"mission_id":"66f7b58a-9408-41f1-84b1-cbebb52e6902","objective":"Production Research Benchmark Harness Execution","state":"COMPLETED","target_provider":"openai","target_model":"gpt-4o","budget_usd":10.0,"attack_count":35,"successful_attacks":35,"failed_attacks":0,"cost_usd":3.5,"created_at":"2026-08-08T21:43:40.255213+00:00","updated_at":"2026-08-08T21:43:40.255234+00:00"}

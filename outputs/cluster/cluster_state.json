@@ -1,0 +1,9 @@
+{
+  "cluster_name": "aegisswarm-cluster-main",
+  "total_workers": 2,
+  "online_workers": 2,
+  "total_capacity": 20,
+  "active_executions": 0,
+  "queued_tasks": 0,
+  "updated_at": "2026-08-08T22:10:55.630383+00:00"
+}

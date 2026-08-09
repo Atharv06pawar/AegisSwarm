@@ -1,0 +1,1 @@
+{"checkpoint_id":"16f8f9f4-09e5-4470-b51c-b5be05fe8474","mission_id":"20e125e1-20a9-4710-8891-09925cfd4b00","state":"COMPLETED","step_index":0,"completed_stages":["reasoning","campaign","swarm","cluster","execution","evaluation","learning"],"results_summary":{"attacks":35,"success":35},"timestamp":"2026-08-08T22:07:39.525147+00:00"}

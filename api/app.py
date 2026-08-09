@@ -11,7 +11,17 @@ from api.routers import (
     dashboard_router,
     corpus_router,
     search_router,
-    reports_router
+    reports_router,
+    campaigns_router,
+    telemetry_router,
+    cluster_router,
+    learning_router,
+    reasoning_router,
+    orchestrator_router,
+    research_router,
+    assets_router,
+    experiments_router,
+    live_router
 )
 from api.dependencies import get_plugin_registry
 from logging import get_api_logger
@@ -70,6 +80,16 @@ def create_app() -> FastAPI:
     app.include_router(corpus_router, prefix="/api/v1")
     app.include_router(search_router, prefix="/api/v1")
     app.include_router(reports_router, prefix="/api/v1")
+    app.include_router(campaigns_router, prefix="/api/v1")
+    app.include_router(telemetry_router, prefix="/api/v1")
+    app.include_router(cluster_router, prefix="/api/v1")
+    app.include_router(learning_router, prefix="/api/v1")
+    app.include_router(reasoning_router, prefix="/api/v1")
+    app.include_router(orchestrator_router, prefix="/api/v1")
+    app.include_router(research_router, prefix="/api/v1")
+    app.include_router(assets_router, prefix="/api/v1")
+    app.include_router(experiments_router, prefix="/api/v1")
+    app.include_router(live_router, prefix="/api/v1")
 
     return app
 
